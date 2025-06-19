@@ -9,29 +9,33 @@
             <!-- Desktop/Tablet Navigation -->
             <div class="hidden md:flex items-center space-x-6">
                 <a href="{{ route('home') }}"
-                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('home') ? 'font-bold text-white border-b-2 border-blue-500' : '' }}">
-                    <i class="fas fa-home text-lg mr-0 md:mr-0 lg:mr-2"></i>
+                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('home') ? 'font-bold text-white border-b-2 border-blue-500 shadow-lg shadow-blue-500/50' : '' }}">
+                    <i class="fas fa-home text-lg mr-0 md:mr-0 lg:mr-2 {{ request()->routeIs('home') ? 'text-blue-400' : '' }}"></i>
                     <span class="hidden lg:inline">Home</span>
                 </a>
                 <a href="{{ route('toko') }}"
-                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('toko') ? 'font-bold text-white border-b-2 border-blue-500' : '' }}">
-                    <i class="fas fa-code text-lg mr-0 md:mr-0 lg:mr-2"></i>
+                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('toko') ? 'font-bold text-white border-b-2 border-purple-500 shadow-lg shadow-purple-500/50' : '' }}">
+                    <i class="fas fa-code text-lg mr-0 md:mr-0 lg:mr-2 {{ request()->routeIs('toko') ? 'text-purple-400' : '' }}"></i>
                     <span class="hidden lg:inline">Toko</span>
                 </a>
-                <a href="#" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl">
-                    <i class="fas fa-globe text-lg mr-0 md:mr-0 lg:mr-2"></i>
+                <a href="{{ route('service') }}"
+                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('service') ? 'font-bold text-white border-b-2 border-green-500 shadow-lg shadow-green-500/50' : '' }}">
+                    <i class="fas fa-globe text-lg mr-0 md:mr-0 lg:mr-2 {{ request()->routeIs('service') ? 'text-green-400' : '' }}"></i>
                     <span class="hidden lg:inline">Jasa</span>
                 </a>
-                <a href="#" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl">
-                    <i class="fas fa-briefcase text-lg mr-0 md:mr-0 lg:mr-2"></i>
+                <a href="{{ route('portofolio') }}"
+                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('portofolio') ? 'font-bold text-white border-b-2 border-yellow-500 shadow-lg shadow-yellow-500/50' : '' }}">
+                    <i class="fas fa-briefcase text-lg mr-0 md:mr-0 lg:mr-2 {{ request()->routeIs('portofolio') ? 'text-yellow-400' : '' }}"></i>
                     <span class="hidden lg:inline">Portofolio</span>
                 </a>
-                <a href="#" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl">
-                    <i class="fas fa-blog text-lg mr-0 md:mr-0 lg:mr-2"></i>
+                <a href="{{ route('blog') }}"
+                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('blog') ? 'font-bold text-white border-b-2 border-red-500 shadow-lg shadow-red-500/50' : '' }}">
+                    <i class="fas fa-blog text-lg mr-0 md:mr-0 lg:mr-2 {{ request()->routeIs('blog') ? 'text-red-400' : '' }}"></i>
                     <span class="hidden lg:inline">Blog</span>
                 </a>
-                <a href="#" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl">
-                    <i class="fas fa-info-circle text-lg mr-0 md:mr-0 lg:mr-2"></i>
+                <a href="{{ route('about') }}"
+                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('about') ? 'font-bold text-white border-b-2 border-pink-500 shadow-lg shadow-pink-500/50' : '' }}">
+                    <i class="fas fa-info-circle text-lg mr-0 md:mr-0 lg:mr-2 {{ request()->routeIs('about') ? 'text-pink-400' : '' }}"></i>
                     <span class="hidden lg:inline">About</span>
                 </a>
             </div>

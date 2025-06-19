@@ -31,8 +31,20 @@ class PageController extends Controller
         return view('pages.contact');
     }
 
-    public function services()
+    public function service()
     {
-        return view('pages.services');
+        return view('pages.service');
+    }
+    public function technology()
+    {
+        return view('pages.technology');
+    }
+    public function blog()
+    {
+        return view('pages.blog');
+    }
+    public function portfolio()
+    {
+        return view('pages.portfolio');
     }
 }
