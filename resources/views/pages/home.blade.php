@@ -9,9 +9,9 @@
 <!-- Section: Telah Dipercaya Oleh -->
 <x-client />
 
-<x-tech-languange />
+<x-tech-languange :techCategories="$techCategories" />
 
-<x-service-card />
+<x-service-card :services="$services" />
 
 <x-developer />
 

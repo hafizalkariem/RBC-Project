@@ -142,6 +142,21 @@
             left: 100%;
         }
     }
+
+    @keyframes marquee {
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    .animate-marquee {
+        animation: marquee 18s linear infinite;
+
+    }
 </style>
 <section class="py-16 md:py-24 glass-dark backdrop-blur-xl relative">
     <div class="code-bg"></div>
@@ -181,318 +196,50 @@
         </div>
 
         <!-- Frontend Technologies -->
+        {{-- filepath: resources/views/components/tech-languange.blade.php --}}
+        ...
+        @foreach($techCategories as $category)
         <div class="mb-16">
             <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-                🎨 Frontend Development
+                {{ $category->icon ?? '' }} {{ $category->name }}
             </h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div class="hidden sm:grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+                @foreach($category->technologies as $tech)
                 <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5" class="w-full h-full object-contain">
+                    <div class="tech-logo w-16 h-16 mx-auto mb-4 flex items-center justify-center p-3">
+                        @if($tech->logo_url)
+                        <img src="{{ Str::startsWith($tech->logo_url, ['http', '//']) ? $tech->logo_url : asset($tech->logo_url) }}" alt="{{ $tech->name }}" class="w-full h-full object-contain">
+                        @else
+                        <i class="fas fa-robot text-white text-2xl"></i>
+                        @endif
                     </div>
-                    <h4 class="text-white font-semibold mb-2">HTML5</h4>
-                    <p class="text-white/70 text-sm mb-3">Struktur Web Modern</p>
+                    <h4 class="text-white font-semibold mb-2">{{ $tech->name }}</h4>
+                    <p class="text-white/70 text-sm mb-3">{{ $tech->description }}</p>
                     <div class="expertise-level"></div>
                 </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3" class="w-full h-full object-contain">
+                @endforeach
+            </div>
+            {{-- Marquee mobile --}}
+            <div class="block sm:hidden overflow-hidden whitespace-nowrap py-2">
+                <div class="inline-flex animate-marquee gap-4">
+                    @foreach($category->technologies as $tech)
+                    <div class="tech-card w-48 inline-block p-4 text-center group rounded-2xl">
+                        <div class="tech-logo w-12 h-12 mx-auto mb-2 flex items-center justify-center p-2">
+                            @if($tech->logo_url)
+                            <img src="{{ Str::startsWith($tech->logo_url, ['http', '//']) ? $tech->logo_url : asset($tech->logo_url) }}" alt="{{ $tech->name }}" class="w-full h-full object-contain">
+                            @else
+                            <i class="fas fa-robot text-white text-2xl"></i>
+                            @endif
+                        </div>
+                        <h4 class="text-white font-semibold text-base mb-1">{{ $tech->name }}</h4>
+                        <p class="text-white/70 text-sm mb-3">{{ $tech->description }}</p>
+                        <div class="expertise-level"></div>
                     </div>
-                    <h4 class="text-white font-semibold mb-2">CSS3</h4>
-                    <p class="text-white/70 text-sm mb-3">Styling & Animation</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">JavaScript</h4>
-                    <p class="text-white/70 text-sm mb-3">ES6+ & TypeScript</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">React.js</h4>
-                    <p class="text-white/70 text-sm mb-3">Component Library</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Vue.js</h4>
-                    <p class="text-white/70 text-sm mb-3">Progressive Framework</p>
-                    <div class="expertise-level"></div>
+                    @endforeach
                 </div>
             </div>
         </div>
-
-        <!-- Backend Technologies -->
-        <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-                ⚙️ Backend Development
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">PHP</h4>
-                    <p class="text-white/70 text-sm mb-3">Laravel, CodeIgniter</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Node.js</h4>
-                    <p class="text-white/70 text-sm mb-3">Express, Fastify</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Python</h4>
-                    <p class="text-white/70 text-sm mb-3">Django, FastAPI</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original.svg" alt="Golang" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Golang</h4>
-                    <p class="text-white/70 text-sm mb-3">Gin, Fiber</p>
-                    <div class="expertise-level"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Database & Cloud -->
-        <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-                🗄️ Database & Cloud
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">MySQL</h4>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">MongoDB</h4>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redis/redis-original.svg" alt="Redis" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Redis</h4>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">AWS</h4>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Docker</h4>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-white rounded-xl flex items-center justify-center p-3">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" class="w-full h-full object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Kubernetes</h4>
-                    <div class="expertise-level"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile & Tools -->
-        <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-                📱 Mobile & Tools
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-cyan-600 rounded-xl flex items-center justify-center text-white text-lg font-bold">
-                        RN
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">React Native</h4>
-                    <p class="text-white/70 text-sm mb-3">Cross Platform</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-blue-500 rounded-xl flex items-center justify-center text-white text-lg font-bold">
-                        Flutter
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Flutter</h4>
-                    <p class="text-white/70 text-sm mb-3">Dart Framework</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gray-700 rounded-xl flex items-center justify-center text-white text-lg font-bold">
-                        Git
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Git</h4>
-                    <p class="text-white/70 text-sm mb-3">Version Control</p>
-                    <div class="expertise-level"></div>
-                </div>
-
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-indigo-600 rounded-xl flex items-center justify-center text-white text-lg font-bold">
-                        Figma
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Figma</h4>
-                    <p class="text-white/70 text-sm mb-3">UI/UX Design</p>
-                    <div class="expertise-level"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- AI & Agent Development -->
-        <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-                🤖 AI & Agent Development
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-purple-500 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">AI Agent</h4>
-                    <p class="text-white/70 text-sm mb-3">Custom AI Chatbot & Automation</p>
-                    <div class="expertise-level"></div>
-                </div>
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" class="w-10 h-10 object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Python AI</h4>
-                    <p class="text-white/70 text-sm mb-3">LangChain, OpenAI, HuggingFace</p>
-                    <div class="expertise-level"></div>
-                </div>
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" class="w-10 h-10 object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">TensorFlow</h4>
-                    <p class="text-white/70 text-sm mb-3">Deep Learning & Model Training</p>
-                    <div class="expertise-level"></div>
-                </div>
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-400 to-blue-400 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" class="w-10 h-10 object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">PyTorch</h4>
-                    <p class="text-white/70 text-sm mb-3">AI Model & NLP</p>
-                    <div class="expertise-level"></div>
-                </div>
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-green-400 to-blue-400 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <img src="https://raw.githubusercontent.com/n8n-io/n8n/master/assets/images/n8n-logo.png" alt="n8n" class="w-10 h-10 object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">n8n</h4>
-                    <p class="text-white/70 text-sm mb-3">Workflow Automation & Integration</p>
-                    <div class="expertise-level"></div>
-                </div>
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-cyan-400 to-blue-600 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <img src="https://seeklogo.com/images/O/openai-logo-8B9BFEDC26-seeklogo.com.png" alt="OpenAI" class="w-10 h-10 object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">OpenAI API</h4>
-                    <p class="text-white/70 text-sm mb-3">Integrasi GPT, ChatGPT, DALL-E, dsb</p>
-                    <div class="expertise-level"></div>
-                </div>
-            </div>
-        </div>
-
-
-        <!-- Web Design Section -->
-        <div class="mb-16">
-            <h3 class="text-2xl md:text-3xl font-bold text-white mb-8 text-center">
-                🎨 Web Design
-            </h3>
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-pink-400 to-purple-500 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma" class="w-10 h-10 object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Figma</h4>
-                    <p class="text-white/70 text-sm mb-3">UI/UX Design & Prototyping</p>
-                    <div class="expertise-level"></div>
-                </div>
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-400 to-blue-700 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/adobephotoshop/adobephotoshop-plain.svg" alt="Photoshop" class="w-10 h-10 object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Adobe Photoshop</h4>
-                    <p class="text-white/70 text-sm mb-3">Image Editing & Graphics</p>
-                    <div class="expertise-level"></div>
-                </div>
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/adobeillustrator/adobeillustrator-plain.svg" alt="Illustrator" class="w-10 h-10 object-contain">
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Adobe Illustrator</h4>
-                    <p class="text-white/70 text-sm mb-3">Vector & Logo Design</p>
-                    <div class="expertise-level"></div>
-                </div>
-                <div class="tech-card rounded-2xl p-6 text-center group">
-                    <div class="tech-logo w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl flex items-center justify-center text-white text-2xl font-bold">
-                        <i class="fas fa-paint-brush"></i>
-                    </div>
-                    <h4 class="text-white font-semibold mb-2">Custom Web Design</h4>
-                    <p class="text-white/70 text-sm mb-3">Desain Website Unik & Modern</p>
-                    <div class="expertise-level"></div>
-                </div>
-            </div>
-        </div>
-        <!-- CTA Section -->
-        <div class="text-center">
-            <div class="tech-card rounded-3xl p-8 md:p-12 max-w-4xl mx-auto">
-                <h3 class="text-3xl md:text-4xl font-bold text-white mb-6">
-                    Siap Membangun Proyek Impian Anda?
-                </h3>
-                <p class="text-white/80 text-lg mb-8 max-w-2xl mx-auto">
-                    Dengan stack teknologi terdepan dan tim developer berpengalaman, kami siap mewujudkan ide digital Anda menjadi kenyataan.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button class="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                        Konsultasi Gratis
-                    </button>
-                    <button class="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold py-4 px-8 rounded-full transition-all duration-300">
-                        Lihat Portfolio
-                    </button>
-                </div>
-            </div>
-        </div>
+        @endforeach
+        ...
     </div>
 </section>

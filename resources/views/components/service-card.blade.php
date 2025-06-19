@@ -126,150 +126,25 @@
 
         <!-- Services Grid -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Website E-Learning -->
-            <div class="service-card rounded-2xl p-8 fade-in stagger-1">
+            @foreach($services as $index => $service)
+            <div class="service-card rounded-2xl p-8 fade-in stagger-{{ $index+1 }}">
                 <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6 floating-animation">
-                    <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    <i class="fas {{ $service->icon }} text-white text-2xl"></i>
                 </div>
-                <h3 class="text-2xl font-bold mb-4">Website E-Learning</h3>
+                <h3 class="text-2xl font-bold mb-4">{{ $service->name }}</h3>
                 <p class="mb-6 leading-relaxed">
-                    Platform pembelajaran online lengkap dengan sistem manajemen kursus, video streaming, quiz interaktif, dan sertifikat digital untuk institusi pendidikan modern.
+                    {{ $service->description }}
                 </p>
                 <ul class="text-sm space-y-2">
+                    @foreach($service->features as $feature)
                     <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        LMS (Learning Management System)
+                        <i class="fas {{ $feature->icon ?? 'fa-check' }} mr-2"></i>
+                        {{ $feature->feature }}
                     </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Video Streaming Integration
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Progress Tracking & Analytics
-                    </li>
+                    @endforeach
                 </ul>
             </div>
-            <!-- Landing Page UMKM -->
-            <div class="service-card rounded-2xl p-8 fade-in stagger-2">
-                <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6 floating-animation">
-                    <i class="fas fa-store text-white text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Landing Page UMKM</h3>
-                <p class="mb-6 leading-relaxed">
-                    Desain landing page yang menarik dan conversion-focused untuk UMKM, dilengkapi dengan katalog produk, form pemesanan, dan integrasi WhatsApp Business.
-                </p>
-                <ul class="text-sm space-y-2">
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Responsive Design
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        WhatsApp Integration
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        SEO Optimized
-                    </li>
-                </ul>
-            </div>
-            <!-- Company Profile -->
-            <div class="service-card rounded-2xl p-8 fade-in stagger-3">
-                <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6 floating-animation">
-                    <i class="fas fa-building text-white text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Website Company Profile</h3>
-                <p class="mb-6 leading-relaxed">
-                    Website profesional untuk meningkatkan kredibilitas perusahaan dengan desain elegan, portfolio showcase, dan sistem manajemen konten yang mudah digunakan.
-                </p>
-                <ul class="text-sm space-y-2">
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Custom Design
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        CMS Integration
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Portfolio Gallery
-                    </li>
-                </ul>
-            </div>
-            <!-- Source Code Aplikasi -->
-            <div class="service-card rounded-2xl p-8 fade-in stagger-4">
-                <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6 floating-animation">
-                    <i class="fas fa-code text-white text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Source Code Aplikasi</h3>
-                <p class="mb-6 leading-relaxed">
-                    Koleksi source code aplikasi siap pakai untuk berbagai kebutuhan bisnis seperti POS, Inventory Management, HRM, dan sistem informasi lainnya dengan dokumentasi lengkap.
-                </p>
-                <ul class="text-sm space-y-2">
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Ready-to-Use Applications
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Complete Documentation
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Lifetime Updates
-                    </li>
-                </ul>
-            </div>
-            <!-- Hosting & Domain -->
-            <div class="service-card rounded-2xl p-8 fade-in stagger-5">
-                <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6 floating-animation">
-                    <i class="fas fa-server text-white text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Hosting & Domain</h3>
-                <p class="mb-6 leading-relaxed">
-                    Layanan hosting berkualitas tinggi dengan uptime 99.9%, shared hosting, VPS, dan registrasi domain .com/.id dengan harga kompetitif dan support 24/7.
-                </p>
-                <ul class="text-sm space-y-2">
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        99.9% Uptime Guarantee
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        24/7 Technical Support
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Free SSL Certificate
-                    </li>
-                </ul>
-            </div>
-            <!-- Konsultasi Digital -->
-            <div class="service-card rounded-2xl p-8 fade-in stagger-6">
-                <div class="service-icon w-16 h-16 rounded-full flex items-center justify-center mb-6 floating-animation">
-                    <i class="fas fa-lightbulb text-white text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-bold mb-4">Konsultasi Digital</h3>
-                <p class="mb-6 leading-relaxed">
-                    Konsultasi strategis untuk transformasi digital bisnis Anda, analisis kebutuhan sistem, rekomendasi teknologi, dan roadmap pengembangan yang tepat sasaran.
-                </p>
-                <ul class="text-sm space-y-2">
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Digital Strategy Planning
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Technology Assessment
-                    </li>
-                    <li class="flex items-center">
-                        <i class="fas fa-check mr-2"></i>
-                        Implementation Roadmap
-                    </li>
-                </ul>
-            </div>
+            @endforeach
         </div>
     </div>
 </section>

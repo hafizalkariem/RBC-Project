@@ -127,22 +127,23 @@
         <!-- Stats Section -->
         <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
             <div class="trust-badge rounded-2xl p-6 text-center">
-                <div class="stats-counter text-3xl md:text-4xl font-bold text-blue-300 mb-2">500+</div>
+                <div class="stats-counter text-3xl md:text-4xl font-bold text-blue-300 mb-2" data-target="500">0+</div>
                 <div class="text-white/70 text-sm">Klien Aktif</div>
             </div>
             <div class="trust-badge rounded-2xl p-6 text-center">
-                <div class="stats-counter text-3xl md:text-4xl font-bold text-cyan-300 mb-2">98%</div>
+                <div class="stats-counter text-3xl md:text-4xl font-bold text-cyan-300 mb-2" data-target="98">0%</div>
                 <div class="text-white/70 text-sm">Tingkat Kepuasan</div>
             </div>
             <div class="trust-badge rounded-2xl p-6 text-center">
-                <div class="stats-counter text-3xl md:text-4xl font-bold text-purple-300 mb-2">1000+</div>
+                <div class="stats-counter text-3xl md:text-4xl font-bold text-purple-300 mb-2" data-target="1000">0+</div>
                 <div class="text-white/70 text-sm">Proyek Selesai</div>
             </div>
             <div class="trust-badge rounded-2xl p-6 text-center">
-                <div class="stats-counter text-3xl md:text-4xl font-bold text-blue-200 mb-2">5+</div>
+                <div class="stats-counter text-3xl md:text-4xl font-bold text-blue-200 mb-2" data-target="5">0+</div>
                 <div class="text-white/70 text-sm">Tahun Pengalaman</div>
             </div>
         </div>
+
     </div>
 
     <!-- Client Logos Marquee -->
@@ -219,3 +220,34 @@
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        function animateCounter(el, target, suffix = '') {
+            let start = 0;
+            let end = parseInt(target, 10);
+            let duration = 1500;
+            let startTime = null;
+
+            function updateCounter(currentTime) {
+                if (!startTime) startTime = currentTime;
+                const progress = Math.min((currentTime - startTime) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                el.textContent = value + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    el.textContent = end + suffix;
+                }
+            }
+            requestAnimationFrame(updateCounter);
+        }
+
+        document.querySelectorAll('.stats-counter').forEach(function(el) {
+            const target = el.getAttribute('data-target');
+            let suffix = '';
+            if (el.textContent.includes('+')) suffix = '+';
+            if (el.textContent.includes('%')) suffix = '%';
+            animateCounter(el, target, suffix);
+        });
+    });
+</script>

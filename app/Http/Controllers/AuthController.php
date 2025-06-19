@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function showLoginForm()
     {
-        return view('auth.login');
+        return view('pages.login');
     }
 
     public function login(Request $request)
@@ -32,7 +32,7 @@ class AuthController extends Controller
 
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        return view('pages.register');
     }
 
     public function register(Request $request)

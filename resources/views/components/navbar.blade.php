@@ -13,7 +13,8 @@
                     <i class="fas fa-home text-lg mr-0 md:mr-0 lg:mr-2"></i>
                     <span class="hidden lg:inline">Home</span>
                 </a>
-                <a href="#" class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl">
+                <a href="{{ route('toko') }}"
+                    class="flex items-center text-gray-300 hover:text-white transition-colors duration-300 hover:scale-105 transform text-sm md:text-base lg:text-lg xl:text-xl {{ request()->routeIs('toko') ? 'font-bold text-white border-b-2 border-blue-500' : '' }}">
                     <i class="fas fa-code text-lg mr-0 md:mr-0 lg:mr-2"></i>
                     <span class="hidden lg:inline">Toko</span>
                 </a>
@@ -43,12 +44,16 @@
                     <span class="ml-2 text-xs md:text-sm bg-blue-500 text-white px-2 py-1 rounded-full hidden md:inline">3</span>
                 </button>
                 <!-- Auth Buttons -->
-                <button class="glass px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-blue-500/20 transition-all duration-300 hidden md:inline text-xs md:text-sm lg:text-base">
+                <a href="{{ route('login') }}"
+                    class="glass px-4 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-blue-500/20 transition-all duration-300 hidden md:inline text-xs md:text-sm lg:text-base">
                     Masuk
-                </button>
-                <button class="bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded-lg text-white hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl hidden md:inline text-xs md:text-sm lg:text-base">
+                </a>
+
+                <!-- Daftar -->
+                <a href="{{ route('register') }}"
+                    class="bg-gradient-to-r from-blue-500 to-purple-600 px-4 py-2 rounded-lg text-white hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl hidden md:inline text-xs md:text-sm lg:text-base">
                     Daftar
-                </button>
+                </a>
                 <!-- Mobile Menu Button -->
                 <button @click="open = !open" class="md:hidden glass p-2 rounded-lg">
                     <i class="fas fa-bars text-gray-300 text-lg"></i>

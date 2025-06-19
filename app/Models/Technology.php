@@ -5,26 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Technology extends Model
 {
     use HasFactory;
-
+    protected $table = 'technologies';
     protected $fillable = [
+        'tech_category_id',
         'name',
         'description',
-        'price',
-        'stock',
-        'category_id',
-        'image',
+        'logo_url',
+        'expertise_level',
+        'order',
     ];
 
     public function category()
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function orders()
-    {
-        return $this->belongsToMany(Order::class);
+        return $this->belongsTo(TechCategory::class, 'tech_category_id');
     }
 }

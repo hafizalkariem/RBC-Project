@@ -48,7 +48,7 @@
             <p class="text-xl text-gray-300 mb-8 leading-relaxed">
                 Solusi tepat pembuatan website cepat & profesional. RBC siap membantu kebutuhan digital Anda dengan teknologi terdepan dan desain yang memukau.
             </p>
-            <div class="flex flex-row flex-wrap gap-3 sm:gap-4 mb-6 justify-center">
+            <div class="flex flex-row flex-wrap gap-3 sm:gap-4 mb-6 justify-center md:justify-start">
                 <button class="bg-gradient-to-r from-blue-500 to-purple-600 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-white font-semibold text-sm sm:text-base hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl">
                     <i class="fas fa-rocket mr-2"></i>Mulai Sekarang
                 </button>
@@ -58,7 +58,7 @@
                 </button>
             </div>
             <!-- Stats -->
-            <div class="flex flex-row flex-wrap gap-3 sm:gap-4 mt-6 justify-center">
+            <div class="flex flex-row flex-wrap gap-3 sm:gap-4 mt-6 justify-center md:justify-start">
                 <div class="text-center min-w-[90px]">
                     <div class="text-xl sm:text-3xl font-bold text-blue-600 counter" data-count="500">0+</div>
                     <div class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Source Code</div>
