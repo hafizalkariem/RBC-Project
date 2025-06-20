@@ -26,8 +26,10 @@ Route::get('/portfolio', [PageController::class, 'portfolio'])->name('portfolio'
 Route::get('/portofolio', [PageController::class, 'portfolio'])->name('portofolio');
 // blog Page
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
-// about Page
-Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::get('/blog/{slug}', [PageController::class, 'blogDetail'])->name('blog.detail');
+Route::get('/blog-detail', [PageController::class, 'blogDetail'])->name('blog-detail');
+Route::get('/blog-detail/{slug}', [PageController::class, 'blogDetail'])->name('blog-detail.slug');
+
 // Login Page
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::get('/register', [AuthController::class, 'showRegistrationForm'])->name('register');

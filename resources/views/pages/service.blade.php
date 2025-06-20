@@ -4,35 +4,38 @@
 <div class="container mx-auto max-w-7xl py-20 md:py-28">
     <!-- Hero Section -->
     <div class="text-center mb-16">
-        <h1 class="text-5xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent">
+        <h1 class="text-5xl md:text-6xl font-extrabold mb-6 bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent drop-shadow-lg animate-gradient-x">
             Jasa Pembuatan Website Profesional
         </h1>
-        <p class="text-xl text-gray-300 max-w-3xl mx-auto">
+        <p class="text-xl text-gray-300 max-w-3xl mx-auto font-light">
             Wujudkan visi digital Anda dengan solusi website profesional yang modern, responsif, dan SEO-friendly
         </p>
     </div>
 
+    <!-- Divider -->
+    <div class="border-t border-blue-500/20 mb-20"></div>
+
     <!-- Value Proposition Section -->
     <section class="mb-20">
-        <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-blue-500 transition-all duration-500">
+        <div class="bg-gradient-to-br from-gray-800/60 to-gray-900/80 backdrop-blur-xl rounded-3xl p-10 border border-blue-700/30 shadow-2xl hover:shadow-blue-500/10 transition-all duration-700">
             <h2 class="text-3xl font-bold text-center mb-12 text-blue-400 animate-fade-in">Mengapa Memilih RBC?</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center transform hover:scale-105 transition-all duration-300">
-                    <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-blue-500/50 hover:shadow-blue-500/70 transition-all duration-300 animate-float">
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="text-center transform hover:scale-105 transition-all duration-500 group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:shadow-blue-500/60 transition-all duration-500 animate-float">
                         <i class="fas fa-rocket text-3xl text-white animate-pulse"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">Teknologi Terdepan</h3>
                     <p class="text-gray-300">Menggunakan framework dan teknologi terbaru untuk performa optimal</p>
                 </div>
-                <div class="text-center transform hover:scale-105 transition-all duration-300">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-purple-500/50 hover:shadow-purple-500/70 transition-all duration-300 animate-float">
+                <div class="text-center transform hover:scale-105 transition-all duration-500 group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:shadow-purple-500/60 transition-all duration-500 animate-float">
                         <i class="fas fa-code text-3xl text-white animate-pulse"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">Tim Berpengalaman</h3>
                     <p class="text-gray-300">Developer profesional dengan pengalaman 5+ tahun</p>
                 </div>
-                <div class="text-center transform hover:scale-105 transition-all duration-300">
-                    <div class="w-20 h-20 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-lg shadow-cyan-500/50 hover:shadow-cyan-500/70 transition-all duration-300 animate-float">
+                <div class="text-center transform hover:scale-105 transition-all duration-500 group">
+                    <div class="w-20 h-20 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-full flex items-center justify-center mx-auto mb-4 shadow-xl group-hover:shadow-cyan-500/60 transition-all duration-500 animate-float">
                         <i class="fas fa-clock text-3xl text-white animate-pulse"></i>
                     </div>
                     <h3 class="text-xl font-semibold mb-3 bg-gradient-to-r from-cyan-400 to-cyan-600 bg-clip-text text-transparent">Support 24/7</h3>
@@ -42,56 +45,15 @@
         </div>
     </section>
 
-    <!-- Proses Kerja Section -->
-    <section class="mb-20">
-        <h2 class="text-3xl font-bold text-center mb-12 text-blue-400">Proses Kerja Kami</h2>
-        <div class="grid md:grid-cols-4 gap-6">
-            <div class="text-center relative">
-                <div class="w-20 h-20 bg-gradient-to-r from-blue-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
-                    <span class="text-2xl font-bold">1</span>
-                </div>
-                <h3 class="text-lg font-semibold mb-2">Konsultasi</h3>
-                <p class="text-gray-300 text-sm">Analisis kebutuhan dan diskusi konsep</p>
-                <div class="hidden md:block absolute top-10 -right-6 text-blue-400">
-                    <i class="fas fa-arrow-right text-2xl"></i>
-                </div>
-            </div>
-            <div class="text-center relative">
-                <div class="w-20 h-20 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
-                    <span class="text-2xl font-bold">2</span>
-                </div>
-                <h3 class="text-lg font-semibold mb-2">Desain</h3>
-                <p class="text-gray-300 text-sm">Pembuatan mockup dan prototype</p>
-                <div class="hidden md:block absolute top-10 -right-6 text-purple-400">
-                    <i class="fas fa-arrow-right text-2xl"></i>
-                </div>
-            </div>
-            <div class="text-center relative">
-                <div class="w-20 h-20 bg-gradient-to-r from-cyan-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
-                    <span class="text-2xl font-bold">3</span>
-                </div>
-                <h3 class="text-lg font-semibold mb-2">Pengembangan</h3>
-                <p class="text-gray-300 text-sm">Coding dan implementasi fitur</p>
-                <div class="hidden md:block absolute top-10 -right-6 text-cyan-400">
-                    <i class="fas fa-arrow-right text-2xl"></i>
-                </div>
-            </div>
-            <div class="text-center">
-                <div class="w-20 h-20 bg-gradient-to-r from-green-500 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-glow">
-                    <span class="text-2xl font-bold">4</span>
-                </div>
-                <h3 class="text-lg font-semibold mb-2">Peluncuran & Support</h3>
-                <p class="text-gray-300 text-sm">Go live dan maintenance berkelanjutan</p>
-            </div>
-        </div>
-    </section>
+    <!-- Divider -->
+    <div class="border-t border-purple-500/20 mb-20"></div>
 
     <!-- Paket Layanan Section -->
     <section class="mb-20">
         <h2 class="text-3xl font-bold text-center mb-12 text-blue-400">Paket Layanan</h2>
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-3 gap-10">
             <!-- Basic Package -->
-            <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-blue-500 transition-all duration-300">
+            <div class="bg-gradient-to-br from-gray-800/70 to-gray-900/80 rounded-3xl p-8 border border-gray-700 hover:border-blue-500 shadow-xl hover:shadow-blue-500/30 transition-all duration-500 group">
                 <div class="text-center mb-6">
                     <h3 class="text-2xl font-bold mb-2">Basic</h3>
                     <div class="text-4xl font-bold text-blue-400 mb-2">Rp 5jt</div>
@@ -104,13 +66,13 @@
                     <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>Contact Form</li>
                     <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>1 Bulan Support</li>
                 </ul>
-                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors">
+                <button class="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-3 rounded-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                     Pilih Paket
                 </button>
             </div>
 
             <!-- Business Package -->
-            <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-blue-500 hover:border-blue-400 transition-all duration-300 relative">
+            <div class="bg-gradient-to-br from-gray-800/70 to-gray-900/80 rounded-3xl p-8 border-2 border-blue-500 hover:border-blue-400 transition-all duration-300 relative group">
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
                     <span class="bg-blue-500 text-white px-4 py-1 rounded-full text-sm">Populer</span>
                 </div>
@@ -126,13 +88,13 @@
                     <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>SEO Advanced</li>
                     <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>3 Bulan Support</li>
                 </ul>
-                <button class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition-colors">
+                <button class="w-full bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white py-3 rounded-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                     Pilih Paket
                 </button>
             </div>
 
             <!-- Enterprise Package -->
-            <div class="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700 hover:border-purple-500 transition-all duration-300">
+            <div class="bg-gradient-to-br from-gray-800/70 to-gray-900/80 rounded-3xl p-8 border border-gray-700 hover:border-purple-500 transition-all duration-300 group">
                 <div class="text-center mb-6">
                     <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
                     <div class="text-4xl font-bold text-purple-400 mb-2">Rp 25jt</div>
@@ -145,7 +107,7 @@
                     <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>API Integration</li>
                     <li class="flex items-center"><i class="fas fa-check text-green-400 mr-3"></i>12 Bulan Support</li>
                 </ul>
-                <button class="w-full bg-purple-600 hover:bg-purple-700 text-white py-3 rounded-lg transition-colors">
+                <button class="w-full bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-700 hover:to-purple-600 text-white py-3 rounded-lg font-semibold shadow-lg transition-all duration-300 transform hover:scale-105">
                     Pilih Paket
                 </button>
             </div>
@@ -156,51 +118,64 @@
     <section class="mb-20">
         <h2 class="text-3xl font-bold text-center mb-12 text-blue-400">Studi Kasus Terkait</h2>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-blue-500 transition-all duration-300 hover:-translate-y-2">
-                <div class="relative h-48 overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-600 group-hover:scale-110 transition-transform duration-500">
-                        <i class="fas fa-shopping-cart text-6xl text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:scale-125 transition-transform"></i>
+            <!-- Card 1 -->
+            <div class="bg-gray-900 rounded-2xl border border-gray-800 hover:border-blue-500 shadow-lg overflow-hidden group transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <div class="h-44 flex items-center justify-center bg-gradient-to-br from-blue-500 via-purple-500 to-cyan-400 group-hover:scale-105 transition-transform duration-500">
+                        <i class="fas fa-shopping-cart text-5xl text-white drop-shadow-lg"></i>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-blue-600/80 text-white text-xs px-3 py-1 rounded-full">E-commerce</span>
                     </div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3 group-hover:text-blue-400 transition-colors">E-commerce Fashion</h3>
-                    <p class="text-gray-300 mb-4">Platform e-commerce dengan sistem inventory dan payment gateway terintegrasi</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm group-hover:bg-blue-500 group-hover:text-white transition-colors">Laravel</span>
-                        <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm group-hover:bg-purple-500 group-hover:text-white transition-colors">Vue.js</span>
+                <div class="p-6 flex flex-col gap-3">
+                    <h3 class="text-lg font-bold group-hover:text-blue-400 transition-colors">E-commerce Fashion</h3>
+                    <p class="text-gray-300 text-sm mb-2">Platform e-commerce dengan sistem inventory dan payment gateway terintegrasi</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs">Laravel</span>
+                        <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-xs">Vue.js</span>
                     </div>
-                </div>
-            </div>
-
-            <div class="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-cyan-500 transition-all duration-300 hover:-translate-y-2">
-                <div class="relative h-48 overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 group-hover:scale-110 transition-transform duration-500">
-                        <i class="fas fa-hospital text-6xl text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:scale-125 transition-transform"></i>
-                    </div>
-                </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3 group-hover:text-cyan-400 transition-colors">Sistem Klinik</h3>
-                    <p class="text-gray-300 mb-4">Aplikasi manajemen klinik dengan fitur appointment dan rekam medis</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm group-hover:bg-cyan-500 group-hover:text-white transition-colors">PHP</span>
-                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-sm group-hover:bg-blue-500 group-hover:text-white transition-colors">MySQL</span>
-                    </div>
+                    <a href="#" class="mt-auto inline-block text-blue-400 hover:text-blue-300 text-sm font-semibold transition-colors">Lihat Detail <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
             </div>
-
-            <div class="group bg-gray-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-gray-700 hover:border-green-500 transition-all duration-300 hover:-translate-y-2">
-                <div class="relative h-48 overflow-hidden">
-                    <div class="absolute inset-0 bg-gradient-to-r from-green-500 to-cyan-600 group-hover:scale-110 transition-transform duration-500">
-                        <i class="fas fa-graduation-cap text-6xl text-white absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 group-hover:scale-125 transition-transform"></i>
+            <!-- Card 2 -->
+            <div class="bg-gray-900 rounded-2xl border border-gray-800 hover:border-cyan-500 shadow-lg overflow-hidden group transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <div class="h-44 flex items-center justify-center bg-gradient-to-br from-cyan-500 via-blue-500 to-blue-600 group-hover:scale-105 transition-transform duration-500">
+                        <i class="fas fa-hospital text-5xl text-white drop-shadow-lg"></i>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-cyan-600/80 text-white text-xs px-3 py-1 rounded-full">Klinik</span>
                     </div>
                 </div>
-                <div class="p-6">
-                    <h3 class="text-xl font-bold mb-3 group-hover:text-green-400 transition-colors">Portal Edukasi</h3>
-                    <p class="text-gray-300 mb-4">Platform pembelajaran online dengan sistem quiz dan sertifikat</p>
-                    <div class="flex flex-wrap gap-2">
-                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm group-hover:bg-green-500 group-hover:text-white transition-colors">React</span>
-                        <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-sm group-hover:bg-cyan-500 group-hover:text-white transition-colors">Node.js</span>
+                <div class="p-6 flex flex-col gap-3">
+                    <h3 class="text-lg font-bold group-hover:text-cyan-400 transition-colors">Sistem Klinik</h3>
+                    <p class="text-gray-300 text-sm mb-2">Aplikasi manajemen klinik dengan fitur appointment dan rekam medis</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs">PHP</span>
+                        <span class="bg-blue-500/20 text-blue-400 px-3 py-1 rounded-full text-xs">MySQL</span>
                     </div>
+                    <a href="#" class="mt-auto inline-block text-cyan-400 hover:text-cyan-300 text-sm font-semibold transition-colors">Lihat Detail <i class="fas fa-arrow-right ml-1"></i></a>
+                </div>
+            </div>
+            <!-- Card 3 -->
+            <div class="bg-gray-900 rounded-2xl border border-gray-800 hover:border-green-500 shadow-lg overflow-hidden group transition-all duration-300 hover:-translate-y-2">
+                <div class="relative">
+                    <div class="h-44 flex items-center justify-center bg-gradient-to-br from-green-500 via-cyan-500 to-cyan-600 group-hover:scale-105 transition-transform duration-500">
+                        <i class="fas fa-graduation-cap text-5xl text-white drop-shadow-lg"></i>
+                    </div>
+                    <div class="absolute top-4 right-4">
+                        <span class="bg-green-600/80 text-white text-xs px-3 py-1 rounded-full">Edukasi</span>
+                    </div>
+                </div>
+                <div class="p-6 flex flex-col gap-3">
+                    <h3 class="text-lg font-bold group-hover:text-green-400 transition-colors">Portal Edukasi</h3>
+                    <p class="text-gray-300 text-sm mb-2">Platform pembelajaran online dengan sistem quiz dan sertifikat</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-xs">React</span>
+                        <span class="bg-cyan-500/20 text-cyan-400 px-3 py-1 rounded-full text-xs">Node.js</span>
+                    </div>
+                    <a href="#" class="mt-auto inline-block text-green-400 hover:text-green-300 text-sm font-semibold transition-colors">Lihat Detail <i class="fas fa-arrow-right ml-1"></i></a>
                 </div>
             </div>
         </div>

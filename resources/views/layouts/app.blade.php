@@ -85,7 +85,7 @@
 
     </main>
     <!-- Footer -->
-    <x-footer />
+    <x-footer :services="$services" />
 
     <!-- Dark Mode Toggle -->
     <x-dark-toggle />

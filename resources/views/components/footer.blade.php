@@ -22,23 +22,22 @@
             <div class="col-span-1">
                 <h6 class="text-xl font-bold text-white mb-6">Menu</h6>
                 <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Toko Source Code</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Jasa Website</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Portofolio</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Blog</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Tentang Kami</a></li>
+                    <li><a href="{{ route('home') }}" class="text-gray-400 hover:text-white transition-colors duration-300">Home</a></li>
+                    <li><a href="{{ route('toko') }}" class="text-gray-400 hover:text-white transition-colors duration-300">Toko Source Code</a></li>
+                    <li><a href="{{ route('service') }}" class="text-gray-400 hover:text-white transition-colors duration-300">Jasa Website</a></li>
+                    <li><a href="{{ route('portfolio') }}" class="text-gray-400 hover:text-white transition-colors duration-300">Portofolio</a></li>
+                    <li><a href="{{ route('blog') }}" class="text-gray-400 hover:text-white transition-colors duration-300">Blog</a></li>
+                    <li><a href="{{ route('about') }}" class="text-gray-400 hover:text-white transition-colors duration-300">Tentang Kami</a></li>
                 </ul>
             </div>
             <!-- Services -->
             <div class="col-span-1">
+
                 <h6 class="text-xl font-bold text-white mb-6">Layanan</h6>
                 <ul class="space-y-3">
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Website E-Learning</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Landing Page UMKM</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Website Company Profile</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Source Code Aplikasi</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Hosting And Domain</a></li>
-                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">Konsultasi Digital</a></li>
+                    @foreach ($services as $service)
+                    <li><a href="#" class="text-gray-400 hover:text-white transition-colors duration-300">{{ $service->name }}</a></li>
+                    @endforeach
                 </ul>
             </div>
             <!-- Contact -->
