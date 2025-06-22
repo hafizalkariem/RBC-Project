@@ -1,63 +1,48 @@
 <?php
 
-namespace App\Http\Controllers\Blog;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Blog;
+use App\Models\BlogArticle;
+use App\Models\BlogCategory;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $posts = Blog::all();
-        return view('pages.blog.index', compact('posts'));
+        $articles = BlogArticle::with(['category', 'tags'])
+            ->published()
+            ->orderBy('published_at', 'desc')
+            ->paginate(6);
+
+        $categories = BlogCategory::withCount('publishedArticles')
+            ->where('is_active', true)
+            ->get();
+
+        $recentArticles = BlogArticle::published()
+            ->orderBy('published_at', 'desc')
+            ->take(3)
+            ->get();
+
+        return view('pages.blog', compact('articles', 'categories', 'recentArticles'));
     }
 
-    public function show($id)
+    public function show($slug)
     {
-        $post = Blog::findOrFail($id);
-        return view('pages.blog.show', compact('post'));
-    }
+        $article = BlogArticle::with(['category', 'tags', 'approvedComments'])
+            ->where('slug', $slug)
+            ->published()
+            ->firstOrFail();
 
-    public function create()
-    {
-        return view('pages.blog.create');
-    }
+        $article->incrementViews();
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-        ]);
+        $relatedArticles = BlogArticle::with('category')
+            ->where('blog_category_id', $article->blog_category_id)
+            ->where('id', '!=', $article->id)
+            ->published()
+            ->take(3)
+            ->get();
 
-        Blog::create($request->all());
-        return redirect()->route('blog.index')->with('success', 'Post created successfully.');
-    }
-
-    public function edit($id)
-    {
-        $post = Blog::findOrFail($id);
-        return view('pages.blog.edit', compact('post'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-        ]);
-
-        $post = Blog::findOrFail($id);
-        $post->update($request->all());
-        return redirect()->route('blog.index')->with('success', 'Post updated successfully.');
-    }
-
-    public function destroy($id)
-    {
-        $post = Blog::findOrFail($id);
-        $post->delete();
-        return redirect()->route('blog.index')->with('success', 'Post deleted successfully.');
+        return view('pages.blog-detail', compact('article', 'relatedArticles'));
     }
 }

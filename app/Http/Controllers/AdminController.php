@@ -1,52 +1,23 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Product;
+use App\Models\Order;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function dashboard()
     {
-        // Logic to display admin dashboard
-    }
+        $stats = [
+            'users' => User::count(),
+            'products' => Product::count(),
+            'orders' => Order::count(),
+            'revenue' => Order::sum('total_amount') ?? 0,
+        ];
 
-    public function manageUsers()
-    {
-        // Logic to manage users
-        $users = User::all();
-        return view('admin.users.index', compact('users'));
-    }
-
-    public function showUser($id)
-    {
-        // Logic to show a specific user
-        $user = User::findOrFail($id);
-        return view('admin.users.show', compact('user'));
-    }
-
-    public function editUser($id)
-    {
-        // Logic to edit a specific user
-        $user = User::findOrFail($id);
-        return view('admin.users.edit', compact('user'));
-    }
-
-    public function updateUser(Request $request, $id)
-    {
-        // Logic to update a specific user
-        $user = User::findOrFail($id);
-        $user->update($request->all());
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
-    }
-
-    public function deleteUser($id)
-    {
-        // Logic to delete a specific user
-        $user = User::findOrFail($id);
-        $user->delete();
-        return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
+        return view('admin.dashboard', compact('stats'));
     }
 }

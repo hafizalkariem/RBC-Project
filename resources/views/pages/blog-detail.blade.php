@@ -4,28 +4,39 @@
 <!-- Hero/Title Section -->
 <section class="relative min-h-[80vh] flex items-center justify-center overflow-hidden">
     <div class="absolute inset-0">
-        <img src="{{ $article['image'] }}" alt="Article Cover" class="w-full h-full object-cover opacity-30">
+        <img src="{{ asset('storage/' . $article->featured_image) }}" alt="{{ $article->title }}" class="w-full h-full object-cover opacity-30">
         <div class="absolute inset-0 bg-gradient-to-br from-slate-900/80 via-blue-900/60 to-slate-900/80"></div>
     </div>
     <div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
         <div class="mb-6">
-            <span class="px-4 py-2 bg-blue-500/80 text-white rounded-full text-sm font-medium">{{ $article['category'] }}</span>
+            @php
+            $categoryColors = [
+            'blue' => 'bg-blue-500/80',
+            'purple' => 'bg-purple-500/80',
+            'green' => 'bg-green-500/80',
+            'yellow' => 'bg-yellow-500/80',
+            'red' => 'bg-red-500/80',
+            'cyan' => 'bg-cyan-500/80'
+            ];
+            $bgColor = $categoryColors[$article->category->color] ?? 'bg-blue-500/80';
+            @endphp
+            <span class="px-4 py-2 {{ $bgColor }} text-white rounded-full text-sm font-medium">{{ $article->category->name }}</span>
         </div>
         <h1 class="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent leading-tight">
-            {{ $article['title'] }}
+            {{ $article->title }}
         </h1>
         <div class="flex flex-wrap items-center justify-center gap-6 text-gray-300 mb-8">
             <div class="flex items-center">
-                <img src="https://via.placeholder.com/40x40/3b82f6/ffffff?text=A" alt="Author" class="w-8 h-8 rounded-full mr-3">
-                <span>{{ $article['author'] }}</span>
+                <img src="{{ $article->author_avatar ?? 'https://via.placeholder.com/40x40/3b82f6/ffffff?text=A' }}" alt="Author" class="w-8 h-8 rounded-full mr-3">
+                <span>{{ $article->author_name }}</span>
             </div>
             <div class="flex items-center">
                 <i class="fas fa-calendar mr-2"></i>
-                <span>{{ $article['date'] }}</span>
+                <span>{{ $article->published_at->format('d M Y') }}</span>
             </div>
             <div class="flex items-center">
                 <i class="fas fa-clock mr-2"></i>
-                <span>{{ $article['read_time'] }}</span>
+                <span>{{ $article->read_time }}</span>
             </div>
         </div>
     </div>
@@ -33,88 +44,13 @@
 @endsection
 
 @section('content')
-<div class="max-w-4xl mx-auto">
+<div class="max-w-4xl mx-auto py-10">
     <!-- Article Content -->
-    <article class="prose prose-lg prose-invert max-w-none mb-12">
+    <article class="prose prose-lg prose-invert max-w-none mb-12 blog-content">
         <div class="bg-slate-800/30 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50">
-            <p class="text-xl text-gray-300 leading-relaxed mb-8">
-                Laravel 10 telah dirilis dengan berbagai fitur menarik yang akan meningkatkan produktivitas developer. Dalam artikel ini, kita akan membahas secara mendalam tentang fitur-fitur terbaru dan bagaimana mengimplementasikan best practices dalam pengembangan aplikasi web modern.
-            </p>
-
-            <h2 class="text-3xl font-bold text-white mb-6 mt-12">Fitur Terbaru Laravel 10</h2>
-            
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Laravel 10 membawa sejumlah peningkatan signifikan yang akan memudahkan developer dalam membangun aplikasi web yang robust dan scalable. Berikut adalah beberapa fitur utama yang perlu Anda ketahui:
-            </p>
-
-            <h3 class="text-2xl font-bold text-blue-400 mb-4">1. Process Interaction</h3>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Laravel 10 memperkenalkan Process Interaction yang memungkinkan Anda untuk berinteraksi dengan proses sistem operasi dengan cara yang lebih elegan dan mudah digunakan.
-            </p>
-
-            <div class="bg-slate-900/50 rounded-xl p-6 mb-8 border border-slate-700/30">
-                <pre class="text-green-400 text-sm overflow-x-auto"><code>use Illuminate\Support\Facades\Process;
-
-$result = Process::run('ls -la');
-
-echo $result->output();</code></pre>
+            <div class="text-gray-300 leading-relaxed blog-body">
+                {!! $article->content !!}
             </div>
-
-            <h3 class="text-2xl font-bold text-blue-400 mb-4">2. Test Profiling</h3>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Fitur Test Profiling membantu developer mengidentifikasi test yang berjalan lambat, sehingga dapat mengoptimalkan performa test suite secara keseluruhan.
-            </p>
-
-            <div class="bg-blue-500/10 border-l-4 border-blue-500 p-6 mb-8">
-                <p class="text-blue-300 font-medium mb-2">💡 Tips:</p>
-                <p class="text-gray-300">Gunakan <code class="bg-slate-700 px-2 py-1 rounded text-blue-400">php artisan test --profile</code> untuk melihat profiling test Anda.</p>
-            </div>
-
-            <h3 class="text-2xl font-bold text-blue-400 mb-4">3. Improved Validation</h3>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Laravel 10 menyediakan validation rules yang lebih powerful dan fleksibel, termasuk nested array validation yang lebih mudah digunakan.
-            </p>
-
-            <img src="https://via.placeholder.com/800x400/1e293b/3b82f6?text=Laravel+Validation+Example" alt="Laravel Validation" class="w-full rounded-xl mb-8 border border-slate-700/30">
-
-            <h2 class="text-3xl font-bold text-white mb-6 mt-12">Best Practices</h2>
-
-            <h3 class="text-2xl font-bold text-purple-400 mb-4">1. Service Container & Dependency Injection</h3>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Manfaatkan Service Container Laravel untuk dependency injection yang clean dan testable. Ini akan membuat kode Anda lebih modular dan mudah di-maintain.
-            </p>
-
-            <h3 class="text-2xl font-bold text-purple-400 mb-4">2. Eloquent Relationships</h3>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Gunakan Eloquent relationships dengan bijak untuk menghindari N+1 query problem. Selalu gunakan eager loading ketika diperlukan.
-            </p>
-
-            <div class="bg-slate-900/50 rounded-xl p-6 mb-8 border border-slate-700/30">
-                <pre class="text-green-400 text-sm overflow-x-auto"><code>// Good: Eager loading
-$users = User::with('posts')->get();
-
-// Bad: N+1 problem
-$users = User::all();
-foreach ($users as $user) {
-    echo $user->posts->count();
-}</code></pre>
-            </div>
-
-            <blockquote class="border-l-4 border-cyan-500 bg-cyan-500/10 p-6 mb-8">
-                <p class="text-cyan-300 italic text-lg">
-                    "Laravel 10 bukan hanya tentang fitur baru, tetapi juga tentang bagaimana kita dapat menulis kode yang lebih clean, maintainable, dan performant."
-                </p>
-                <footer class="text-cyan-400 mt-4">— Taylor Otwell, Creator of Laravel</footer>
-            </blockquote>
-
-            <h2 class="text-3xl font-bold text-white mb-6 mt-12">Kesimpulan</h2>
-            <p class="text-gray-300 leading-relaxed mb-6">
-                Laravel 10 membawa banyak peningkatan yang signifikan untuk developer. Dengan mengikuti best practices yang telah dibahas, Anda dapat membangun aplikasi web yang robust, scalable, dan mudah di-maintain.
-            </p>
-
-            <p class="text-gray-300 leading-relaxed">
-                Jangan ragu untuk mulai mengeksplorasi fitur-fitur baru ini dalam proyek Anda. Happy coding!
-            </p>
         </div>
     </article>
 
@@ -149,12 +85,19 @@ foreach ($users as $user) {
     <div class="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 mb-12">
         <h3 class="text-xl font-bold text-white mb-4">Tags</h3>
         <div class="flex flex-wrap gap-3">
-            @foreach($article['tags'] as $index => $tag)
-                @php
-                    $colors = ['blue', 'purple', 'green', 'cyan', 'yellow'];
-                    $color = $colors[$index % count($colors)];
-                @endphp
-                <span class="px-4 py-2 bg-{{ $color }}-500/20 text-{{ $color }}-400 rounded-full text-sm hover:bg-{{ $color }}-500/30 transition-colors duration-300 cursor-pointer">{{ $tag }}</span>
+            @foreach($article->tags as $index => $tag)
+            @php
+            $tagColors = [
+            'blue' => 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30',
+            'purple' => 'bg-purple-500/20 text-purple-400 hover:bg-purple-500/30',
+            'green' => 'bg-green-500/20 text-green-400 hover:bg-green-500/30',
+            'cyan' => 'bg-cyan-500/20 text-cyan-400 hover:bg-cyan-500/30',
+            'yellow' => 'bg-yellow-500/20 text-yellow-400 hover:bg-yellow-500/30',
+            'red' => 'bg-red-500/20 text-red-400 hover:bg-red-500/30'
+            ];
+            $tagClass = $tagColors[$tag->color] ?? 'bg-blue-500/20 text-blue-400 hover:bg-blue-500/30';
+            @endphp
+            <span class="px-4 py-2 {{ $tagClass }} rounded-full text-sm transition-colors duration-300 cursor-pointer">{{ $tag->name }}</span>
             @endforeach
         </div>
     </div>
@@ -165,13 +108,15 @@ foreach ($users as $user) {
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             @foreach($relatedArticles as $related)
             <article class="bg-slate-800/50 backdrop-blur-sm rounded-2xl overflow-hidden border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 hover:scale-105">
-                <img src="{{ $related['image'] }}" alt="Related Article" class="w-full h-40 object-cover">
+                <img src="{{ asset('storage/' . $related->featured_image) }}" alt="{{ $related->title }}" class="w-full h-40 object-cover">
                 <div class="p-4">
-                    <h3 class="font-bold text-white mb-2 hover:text-blue-400 transition-colors duration-300">
-                        {{ $related['title'] }}
-                    </h3>
-                    <p class="text-gray-400 text-sm mb-3">{{ $related['excerpt'] }}</p>
-                    <div class="text-xs text-gray-500">{{ $related['date'] }}</div>
+                    <a href="{{ route('blog.detail', $related->slug) }}" class="block">
+                        <h3 class="font-bold text-white mb-2 hover:text-blue-400 transition-colors duration-300">
+                            {{ $related->title }}
+                        </h3>
+                        <p class="text-gray-400 text-sm mb-3">{{ $related->excerpt }}</p>
+                        <div class="text-xs text-gray-500">{{ $related->published_at->format('d M Y') }}</div>
+                    </a>
                 </div>
             </article>
             @endforeach
@@ -181,7 +126,7 @@ foreach ($users as $user) {
     <!-- Comments Section -->
     <div class="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 mb-12">
         <h3 class="text-2xl font-bold text-white mb-6">Komentar</h3>
-        
+
         <!-- Comment Form -->
         <form class="mb-8">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
@@ -245,39 +190,88 @@ foreach ($users as $user) {
     </div>
 </div>
 
-<script>
-// Copy link functionality
-document.addEventListener('DOMContentLoaded', function() {
-    const copyLinkBtn = document.querySelector('button:has(.fa-link)');
-    if (copyLinkBtn) {
-        copyLinkBtn.addEventListener('click', function() {
-            navigator.clipboard.writeText(window.location.href).then(function() {
-                // Change button text temporarily
-                const originalText = copyLinkBtn.innerHTML;
-                copyLinkBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Copied!';
-                copyLinkBtn.classList.add('bg-green-600');
-                
-                setTimeout(function() {
-                    copyLinkBtn.innerHTML = originalText;
-                    copyLinkBtn.classList.remove('bg-green-600');
-                }, 2000);
-            });
-        });
-    }
-});
+<!-- Prism.js untuk syntax highlighting -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-core.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
 
-// Smooth scroll for internal links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+<style>
+.blog-body h1 { @apply text-3xl font-bold text-white mb-6 mt-8 border-b border-slate-600 pb-3; }
+.blog-body h2 { @apply text-2xl font-bold text-blue-400 mb-4 mt-8; }
+.blog-body h3 { @apply text-xl font-bold text-purple-400 mb-3 mt-6; }
+.blog-body p { @apply text-gray-300 leading-relaxed mb-4; }
+.blog-body blockquote { @apply border-l-4 border-cyan-500 bg-cyan-500/10 p-4 mb-6 italic text-cyan-300; }
+.blog-body pre { @apply bg-slate-900/80 rounded-xl p-4 mb-6 overflow-x-auto border border-slate-700 relative; }
+.blog-body code { @apply bg-slate-700/50 px-2 py-1 rounded text-green-400 text-sm; }
+.blog-body pre code { @apply bg-transparent p-0 text-gray-300; }
+.blog-body img { @apply rounded-xl mb-6 border border-slate-700/50 shadow-lg; }
+.blog-body a { @apply text-blue-400 hover:text-blue-300 underline transition-colors duration-300; }
+.blog-body hr { @apply border-slate-600/30 my-8; }
+.blog-body h4 { @apply text-lg font-bold text-cyan-400 mb-3 mt-6; }
+.blog-body ul li { @apply text-gray-300 mb-2 pl-2; }
+.blog-body ol li { @apply text-gray-300 mb-2 pl-2; }
+.blog-body strong { @apply text-white font-semibold; }
+.blog-body span[style*="font-size: 14pt"] { @apply text-xl font-bold text-yellow-400; }
+.blog-body pre[class*="language-"] { @apply bg-slate-900/90 border border-slate-700/50 rounded-lg p-4 mb-6 overflow-x-auto; }
+.blog-body code[class*="language-"] { @apply text-sm; }
+.copy-btn { @apply absolute top-2 right-2 bg-slate-700 hover:bg-slate-600 text-white px-3 py-1 rounded text-xs transition-colors duration-300; }
+</style>
+
+<script>
+    // Copy link functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const copyLinkBtn = document.querySelector('button:has(.fa-link)');
+        if (copyLinkBtn) {
+            copyLinkBtn.addEventListener('click', function() {
+                navigator.clipboard.writeText(window.location.href).then(function() {
+                    // Change button text temporarily
+                    const originalText = copyLinkBtn.innerHTML;
+                    copyLinkBtn.innerHTML = '<i class="fas fa-check mr-2"></i>Copied!';
+                    copyLinkBtn.classList.add('bg-green-600');
+
+                    setTimeout(function() {
+                        copyLinkBtn.innerHTML = originalText;
+                        copyLinkBtn.classList.remove('bg-green-600');
+                    }, 2000);
+                });
             });
         }
     });
-});
+
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Copy code functionality
+    document.querySelectorAll('pre code').forEach((block) => {
+        const pre = block.parentElement;
+        const button = document.createElement('button');
+        button.className = 'copy-btn';
+        button.textContent = 'Copy';
+        
+        button.addEventListener('click', () => {
+            navigator.clipboard.writeText(block.textContent).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => button.textContent = 'Copy', 2000);
+            });
+        });
+        
+        pre.appendChild(button);
+    });
+
+    // Auto-highlight code blocks
+    if (typeof Prism !== 'undefined') {
+        Prism.highlightAll();
+    }
 </script>
 @endsection

@@ -329,14 +329,23 @@
         }
 
         .testimonial-card {
-            min-width: 90vw;
-            max-width: 98vw;
+            min-width: calc(100vw - 64px);
+            max-width: calc(100vw - 64px);
             padding: 1.5rem;
+            margin: 0 16px;
+        }
+
+        .testimonials-track {
+            gap: 16px;
         }
 
         .navigation {
             flex-direction: column;
             gap: 1.5rem;
+        }
+
+        .container {
+            padding: 0 1rem;
         }
     }
 
@@ -626,13 +635,19 @@
 
         setCardWidth() {
             if (this.cards.length > 0) {
-                this.cardWidth = this.cards[0].offsetWidth
+                const isMobile = window.innerWidth < 768;
+                this.cardWidth = isMobile ? window.innerWidth - 32 : this.cards[0].offsetWidth + 32;
             }
         }
 
         setTrackWidth() {
             this.setCardWidth();
-            this.track.style.width = `${this.cards.length * this.cardWidth}px`;
+            const isMobile = window.innerWidth < 768;
+            if (isMobile) {
+                this.track.style.width = `${this.cards.length * this.cardWidth}px`;
+            } else {
+                this.track.style.width = `${this.cards.length * (400 + 32)}px`;
+            }
         }
 
         init() {
@@ -700,7 +715,11 @@
         }
 
         updateView() {
-            const offset = -this.currentIndex * this.cardWidth;
+            const isMobile = window.innerWidth < 768;
+            const offset = isMobile ? 
+                -this.currentIndex * this.cardWidth : 
+                -this.currentIndex * (this.cards[0].offsetWidth + 32);
+            
             this.track.style.transform = `translateX(${offset}px)`;
 
             // Update indicators

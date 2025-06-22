@@ -9,5 +9,5 @@ $prefix = in_array($icon, $brandIcons) ? 'fab' : 'fas';
     <div class="w-8 h-8 {{ $bg }} rounded-lg flex items-center justify-center">
         <i class="{{ $prefix }} fa-{{ $icon }} text-{{ $color }}"></i>
     </div>
-    <span class="text-gray-400">{{ $text }}</span>
+    <span class="text-gray-400 dark:text-gray-400 text-gray-600">{{ $text }}</span>
 </div>

@@ -22,4 +22,14 @@ class Technology extends Model
     {
         return $this->belongsTo(TechCategory::class, 'tech_category_id');
     }
+
+    public function products()
+    {
+        return $this->belongsToMany(Product::class);
+    }
+
+    public function developerSkills()
+    {
+        return $this->hasMany(DeveloperSkill::class);
+    }
 }

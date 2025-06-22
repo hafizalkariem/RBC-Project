@@ -13,7 +13,7 @@
 
 <x-service-card :services="$services" />
 
-<x-developer />
+<x-developer :developers="$developers" />
 
 <x-testimoni />
 

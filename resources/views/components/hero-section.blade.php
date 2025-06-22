@@ -49,13 +49,13 @@
                 Solusi tepat pembuatan website cepat & profesional. RBC siap membantu kebutuhan digital Anda dengan teknologi terdepan dan desain yang memukau.
             </p>
             <div class="flex flex-row flex-wrap gap-3 sm:gap-4 mb-6 justify-center md:justify-start">
-                <button class="bg-gradient-to-r from-blue-500 to-purple-600 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-white font-semibold text-sm sm:text-base hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl">
+                <button onclick="window.location.href='/service'" class="bg-gradient-to-r from-blue-500 to-purple-600 px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-white font-semibold text-sm sm:text-base hover:from-blue-600 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-2xl">
                     <i class="fas fa-rocket mr-2"></i>Mulai Sekarang
                 </button>
-                <button class="glass-dark px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-white font-semibold text-sm sm:text-base hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
+                <a href="{{ route('toko') }}" class="glass-dark px-5 py-3 sm:px-8 sm:py-4 rounded-xl text-white font-semibold text-sm sm:text-base hover:bg-white/20 transition-all duration-300 transform hover:scale-105">
                     <i class="fas fa-code mr-2"></i>
                     Jelajahi Source Code
-                </button>
+                </a>
             </div>
             <!-- Stats -->
             <div class="flex flex-row flex-wrap gap-3 sm:gap-4 mt-6 justify-center md:justify-start">

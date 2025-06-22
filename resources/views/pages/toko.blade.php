@@ -2,60 +2,7 @@
 
 @section('fullwidth')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<!-- <script>
-    tailwind.config = {
-        darkMode: 'class',
-        theme: {
-            extend: {
-                backdropBlur: {
-                    xs: '2px',
-                },
-                animation: {
-                    'float': 'float 6s ease-in-out infinite',
-                    'glow': 'glow 2s ease-in-out infinite alternate',
-                    'slide-up': 'slideUp 0.5s ease-out',
-                    'fade-in': 'fadeIn 0.6s ease-out',
-                },
-                keyframes: {
-                    float: {
-                        '0%, 100%': {
-                            transform: 'translateY(0px)'
-                        },
-                        '50%': {
-                            transform: 'translateY(-10px)'
-                        },
-                    },
-                    glow: {
-                        '0%': {
-                            boxShadow: '0 0 20px rgba(59, 130, 246, 0.5)'
-                        },
-                        '100%': {
-                            boxShadow: '0 0 30px rgba(59, 130, 246, 0.8)'
-                        },
-                    },
-                    slideUp: {
-                        '0%': {
-                            transform: 'translateY(20px)',
-                            opacity: '0'
-                        },
-                        '100%': {
-                            transform: 'translateY(0)',
-                            opacity: '1'
-                        },
-                    },
-                    fadeIn: {
-                        '0%': {
-                            opacity: '0'
-                        },
-                        '100%': {
-                            opacity: '1'
-                        },
-                    }
-                }
-            }
-        }
-    }
-</script> -->
+
 <style>
     .glass {
         background: rgba(255, 255, 255, 0.1);
@@ -163,297 +110,31 @@
             </div>
 
             <!-- Category Navigation -->
-            <div class="mb-8 overflow-x-auto animate-slide-up">
-                <nav class="flex gap-4 whitespace-nowrap p-4">
-                    <button class="category-pill px-6 py-3 rounded-full glass-button text-white font-semibold hover:bg-blue-500/50 transition-all duration-300 active">
-                        <i class="fas fa-star mr-2"></i>Semua
-                    </button>
-                    <button class="category-pill px-6 py-3 rounded-full glass text-white/90 hover:glass-button transition-all duration-300">
-                        <i class="fas fa-chart-line mr-2"></i>Admin & Dashboard
-                    </button>
-                    <button class="category-pill px-6 py-3 rounded-full glass text-white/90 hover:glass-button transition-all duration-300">
-                        <i class="fas fa-store mr-2"></i>Website UMKM
-                    </button>
-                    <button class="category-pill px-6 py-3 rounded-full glass text-white/90 hover:glass-button transition-all duration-300">
-                        <i class="fas fa-user mr-2"></i>Portofolio Pribadi
-                    </button>
-                    <button class="category-pill px-6 py-3 rounded-full glass text-white/90 hover:glass-button transition-all duration-300">
-                        <i class="fas fa-shopping-cart mr-2"></i>Toko Online
-                    </button>
-                </nav>
-            </div>
+            <x-toko.kategori_navigation :categories="$categories" />
 
             <!-- Filters & Search -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-12 animate-slide-up">
-                <!-- Search -->
-                <div class="lg:col-span-2">
-                    <div class="relative">
-                        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-white/60"></i>
-                        <input type="text" placeholder="Cari produk amazing..."
-                            class="w-full pl-12 pr-4 py-4 rounded-2xl glass text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-400/50 transition-all duration-300" />
-                    </div>
-                </div>
-
-                <!-- Technology Filter -->
-                <div class="relative">
-                    <select class="w-full px-4 py-4 rounded-2xl glass text-white appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/50 transition-all duration-300">
-                        <option value="" class="bg-gray-800">🛠️ Semua Teknologi</option>
-                        <option value="html" class="bg-gray-800">HTML/CSS</option>
-                        <option value="bootstrap" class="bg-gray-800">Bootstrap</option>
-                        <option value="react" class="bg-gray-800">React</option>
-                        <option value="vue" class="bg-gray-800">Vue.js</option>
-                        <option value="laravel" class="bg-gray-800">Laravel</option>
-                    </select>
-                    <i class="fas fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-white/60 pointer-events-none"></i>
-                </div>
-
-                <!-- Price Filter -->
-                <div class="relative">
-                    <select class="w-full px-4 py-4 rounded-2xl glass text-white appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400/50 transition-all duration-300">
-                        <option value="" class="bg-gray-800">💰 Semua Harga</option>
-                        <option value="1" class="bg-gray-800">Rp 0 - Rp 100.000</option>
-                        <option value="2" class="bg-gray-800">Rp 100.000 - Rp 500.000</option>
-                        <option value="3" class="bg-gray-800">Rp 500.000+</option>
-                    </select>
-                    <i class="fas fa-chevron-down absolute right-4 top-1/2 transform -translate-y-1/2 text-white/60 pointer-events-none"></i>
-                </div>
-            </div>
+            <x-toko.filter_search :technologies="$technologies" />
 
             <!-- Products Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-                <!-- Product Card 1 -->
-                <div class="product-card glass-card rounded-3xl p-6 shadow-2xl text-white group hover:shadow-blue-500/20 animate-fade-in">
-                    <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1547658719-da2b51169166?w=400&h=250&fit=crop&crop=center"
-                            alt="Dashboard Admin Modern"
-                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 right-4">
-                            <span class="px-3 py-1 bg-green-500/80 text-white text-sm rounded-full backdrop-blur-sm">
-                                <i class="fas fa-fire mr-1"></i>Hot
-                            </span>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-bold group-hover:text-blue-300 transition-colors">Dashboard Admin Modern</h3>
-                        <p class="text-white/70 text-sm leading-relaxed">Dashboard responsif dengan UI/UX modern, chart interaktif, dan fitur lengkap untuk manajemen data.</p>
-
-                        <div class="flex items-center gap-2 text-sm text-white/60">
-                            <i class="fab fa-html5 text-orange-400"></i>
-                            <i class="fab fa-css3-alt text-blue-400"></i>
-                            <i class="fab fa-js-square text-yellow-400"></i>
-                            <span class="ml-2">HTML, CSS, JS</span>
-                        </div>
-
-                        <div class="flex items-center justify-between pt-4">
-                            <div>
-                                <span class="text-2xl font-bold text-blue-300">Rp 250.000</span>
-                                <span class="text-sm text-white/50 line-through ml-2">Rp 350.000</span>
-                            </div>
-                            <button class="glass-button px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105">
-                                <i class="fas fa-shopping-cart mr-2"></i>Beli
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 2 -->
-                <div class="product-card glass-card rounded-3xl p-6 shadow-2xl text-white group hover:shadow-purple-500/20 animate-fade-in" style="animation-delay: 0.1s">
-                    <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop&crop=center"
-                            alt="Website UMKM"
-                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 right-4">
-                            <span class="px-3 py-1 bg-purple-500/80 text-white text-sm rounded-full backdrop-blur-sm">
-                                <i class="fas fa-crown mr-1"></i>Premium
-                            </span>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-bold group-hover:text-purple-300 transition-colors">Website UMKM Complete</h3>
-                        <p class="text-white/70 text-sm leading-relaxed">Template website lengkap untuk UMKM dengan sistem katalog, kontak, dan landing page yang converting.</p>
-
-                        <div class="flex items-center gap-2 text-sm text-white/60">
-                            <i class="fab fa-bootstrap text-purple-400"></i>
-                            <i class="fab fa-php text-blue-300"></i>
-                            <span class="ml-2">Bootstrap, PHP</span>
-                        </div>
-
-                        <div class="flex items-center justify-between pt-4">
-                            <div>
-                                <span class="text-2xl font-bold text-purple-300">Rp 180.000</span>
-                            </div>
-                            <button class="glass-button px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105">
-                                <i class="fas fa-shopping-cart mr-2"></i>Beli
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 3 -->
-                <div class="product-card glass-card rounded-3xl p-6 shadow-2xl text-white group hover:shadow-pink-500/20 animate-fade-in" style="animation-delay: 0.2s">
-                    <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=250&fit=crop&crop=center"
-                            alt="Portfolio Personal"
-                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 right-4">
-                            <span class="px-3 py-1 bg-pink-500/80 text-white text-sm rounded-full backdrop-blur-sm">
-                                <i class="fas fa-star mr-1"></i>Best
-                            </span>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-bold group-hover:text-pink-300 transition-colors">Portfolio Personal Pro</h3>
-                        <p class="text-white/70 text-sm leading-relaxed">Template portfolio modern dengan animasi smooth, responsive design, dan optimized untuk SEO.</p>
-
-                        <div class="flex items-center gap-2 text-sm text-white/60">
-                            <i class="fab fa-react text-cyan-400"></i>
-                            <i class="fab fa-sass text-pink-400"></i>
-                            <span class="ml-2">React, SASS</span>
-                        </div>
-
-                        <div class="flex items-center justify-between pt-4">
-                            <div>
-                                <span class="text-2xl font-bold text-pink-300">Rp 320.000</span>
-                                <span class="text-sm text-white/50 line-through ml-2">Rp 450.000</span>
-                            </div>
-                            <button class="glass-button px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105">
-                                <i class="fas fa-shopping-cart mr-2"></i>Beli
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 4 -->
-                <div class="product-card glass-card rounded-3xl p-6 shadow-2xl text-white group hover:shadow-green-500/20 animate-fade-in" style="animation-delay: 0.3s">
-                    <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=250&fit=crop&crop=center"
-                            alt="E-commerce Platform"
-                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                        <div class="absolute top-4 right-4">
-                            <span class="px-3 py-1 bg-green-500/80 text-white text-sm rounded-full backdrop-blur-sm">
-                                <i class="fas fa-bolt mr-1"></i>New
-                            </span>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-bold group-hover:text-green-300 transition-colors">E-commerce Full Stack</h3>
-                        <p class="text-white/70 text-sm leading-relaxed">Platform e-commerce lengkap dengan payment gateway, admin panel, dan sistem inventory management.</p>
-
-                        <div class="flex items-center gap-2 text-sm text-white/60">
-                            <i class="fab fa-laravel text-red-400"></i>
-                            <i class="fab fa-vuejs text-green-400"></i>
-                            <span class="ml-2">Laravel, Vue.js</span>
-                        </div>
-
-                        <div class="flex items-center justify-between pt-4">
-                            <div>
-                                <span class="text-2xl font-bold text-green-300">Rp 750.000</span>
-                            </div>
-                            <button class="glass-button px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105">
-                                <i class="fas fa-shopping-cart mr-2"></i>Beli
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 5 -->
-                <div class="product-card glass-card rounded-3xl p-6 shadow-2xl text-white group hover:shadow-yellow-500/20 animate-fade-in" style="animation-delay: 0.4s">
-                    <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=400&h=250&fit=crop&crop=center"
-                            alt="Landing Page"
-                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-bold group-hover:text-yellow-300 transition-colors">Landing Page Converter</h3>
-                        <p class="text-white/70 text-sm leading-relaxed">Landing page high-converting dengan A/B testing ready dan analytics integration untuk bisnis apapun.</p>
-
-                        <div class="flex items-center gap-2 text-sm text-white/60">
-                            <i class="fab fa-html5 text-orange-400"></i>
-                            <i class="fab fa-js-square text-yellow-400"></i>
-                            <span class="ml-2">HTML, JavaScript</span>
-                        </div>
-
-                        <div class="flex items-center justify-between pt-4">
-                            <div>
-                                <span class="text-2xl font-bold text-yellow-300">Rp 150.000</span>
-                            </div>
-                            <button class="glass-button px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105">
-                                <i class="fas fa-shopping-cart mr-2"></i>Beli
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Product Card 6 -->
-                <div class="product-card glass-card rounded-3xl p-6 shadow-2xl text-white group hover:shadow-indigo-500/20 animate-fade-in" style="animation-delay: 0.5s">
-                    <div class="relative mb-6 overflow-hidden rounded-2xl">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=250&fit=crop&crop=center"
-                            alt="CRM System"
-                            class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="space-y-4">
-                        <h3 class="text-xl font-bold group-hover:text-indigo-300 transition-colors">CRM Management System</h3>
-                        <p class="text-white/70 text-sm leading-relaxed">Sistem CRM lengkap untuk mengelola customer, sales pipeline, dan reporting dengan dashboard analytics.</p>
-
-                        <div class="flex items-center gap-2 text-sm text-white/60">
-                            <i class="fab fa-node-js text-green-400"></i>
-                            <i class="fab fa-react text-cyan-400"></i>
-                            <span class="ml-2">Node.js, React</span>
-                        </div>
-
-                        <div class="flex items-center justify-between pt-4">
-                            <div>
-                                <span class="text-2xl font-bold text-indigo-300">Rp 950.000</span>
-                                <span class="text-sm text-white/50 line-through ml-2">Rp 1.200.000</span>
-                            </div>
-                            <button class="glass-button px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105">
-                                <i class="fas fa-shopping-cart mr-2"></i>Beli
-                            </button>
-                        </div>
-                    </div>
-                </div>
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+                @forelse($products as $index => $product)
+                <x-toko.product-card :product="$product" :index="$index" />
+                @empty
+                <x-toko.empty-state />
+                @endforelse
             </div>
+
+
 
             <!-- Pagination -->
-            <div class="flex justify-center animate-fade-in">
-                <nav class="glass rounded-2xl p-2 shadow-lg">
-                    <div class="flex items-center gap-2">
-                        <button class="px-4 py-2 rounded-xl text-white hover:glass-button transition-all duration-300">
-                            <i class="fas fa-chevron-left"></i>
-                        </button>
-                        <button class="px-4 py-2 rounded-xl glass-button text-white font-semibold">1</button>
-                        <button class="px-4 py-2 rounded-xl text-white hover:glass-button transition-all duration-300">2</button>
-                        <button class="px-4 py-2 rounded-xl text-white hover:glass-button transition-all duration-300">3</button>
-                        <span class="px-2 text-white/60">...</span>
-                        <button class="px-4 py-2 rounded-xl text-white hover:glass-button transition-all duration-300">
-                            <i class="fas fa-chevron-right"></i>
-                        </button>
-                    </div>
-                </nav>
-            </div>
+            <x-toko.pagination :products="$products" />
         </div>
     </section>
 </div>
 
 <script>
-    // Dark mode toggle functionality
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const darkModeIcon = document.getElementById('darkModeIcon');
-    const html = document.documentElement;
-
-    let isDark = true; // Start with dark mode
-
-    darkModeToggle.addEventListener('click', () => {
-        isDark = !isDark;
-
-        if (isDark) {
-            html.classList.add('dark');
-            darkModeIcon.className = 'fas fa-moon';
-        } else {
-            html.classList.remove('dark');
-            darkModeIcon.className = 'fas fa-sun';
-        }
-    });
+document.addEventListener('DOMContentLoaded', function() {
+    // Note: Dark mode toggle is handled in main layout
 
     // Category filter functionality
     const categoryButtons = document.querySelectorAll('.category-pill');
@@ -505,6 +186,65 @@
         card.style.transition = 'all 0.6s ease';
         observer.observe(card);
     });
+
+    // Live Search Functionality
+    let searchTimeout;
+    const liveSearch = document.getElementById('live-search');
+    const technologyFilter = document.getElementById('technology-filter');
+    const clearFilters = document.getElementById('clear-filters');
+    const productsGrid = document.getElementById('products-grid');
+
+    function performSearch() {
+        const searchQuery = liveSearch ? liveSearch.value : '';
+        const technology = technologyFilter ? technologyFilter.value : '';
+        const category = new URLSearchParams(window.location.search).get('category') || '';
+        
+        console.log('Performing search:', { searchQuery, technology, category });
+        
+        fetch(`/toko/search?search=${encodeURIComponent(searchQuery)}&technology=${encodeURIComponent(technology)}&category=${encodeURIComponent(category)}`, {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest',
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            console.log('Response status:', response.status);
+            return response.json();
+        })
+        .then(data => {
+            console.log('Search result:', data);
+            if (productsGrid && data.html) {
+                productsGrid.innerHTML = data.html;
+            }
+        })
+        .catch(error => {
+            console.error('Search error:', error);
+            if (productsGrid) {
+                productsGrid.innerHTML = '<div class="col-span-full text-center py-12"><div class="glass-card rounded-3xl p-8 text-white"><h3 class="text-xl font-bold mb-2">Error</h3><p class="text-white/70">Terjadi kesalahan saat mencari produk</p></div></div>';
+            }
+        });
+    }
+
+    if (liveSearch) {
+        liveSearch.addEventListener('input', function() {
+            clearTimeout(searchTimeout);
+            searchTimeout = setTimeout(performSearch, 300);
+        });
+    }
+
+    if (technologyFilter) {
+        technologyFilter.addEventListener('change', performSearch);
+    }
+
+    if (clearFilters) {
+        clearFilters.addEventListener('click', function() {
+            if (liveSearch) liveSearch.value = '';
+            if (technologyFilter) technologyFilter.value = '';
+            performSearch();
+        });
+    }
+});
 </script>
 <!-- </body> -->
 @endsection

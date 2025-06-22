@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TechCategory;
 use App\Models\Service;
+use App\Models\Developer;
 
 class PageController extends Controller
 {
@@ -14,13 +15,11 @@ class PageController extends Controller
             $q->orderBy('order');
         }])->orderBy('order')->get();
         $services = Service::with(['features'])->orderBy('order')->get();
-        return view('pages.home', compact('techCategories', 'services'));
+        $developers = Developer::with('skills')->active()->ordered()->get();
+        return view('pages.home', compact('techCategories', 'services', 'developers'));
     }
 
-    public function toko()
-    {
-        return view('pages.toko');
-    }
+
     public function about()
     {
         return view('pages.about');
@@ -33,7 +32,8 @@ class PageController extends Controller
 
     public function service()
     {
-        return view('pages.service');
+        $services = Service::with(['features'])->orderBy('order')->get();
+        return view('pages.service', compact('services'));
     }
     public function technology()
     {
@@ -44,7 +44,7 @@ class PageController extends Controller
         $services = Service::with(['features'])->orderBy('order')->get();
         return view('pages.blog', compact('services'));
     }
-    
+
     public function blogDetail($slug = null)
     {
         // Sample blog data - in real app, fetch from database
@@ -60,7 +60,7 @@ class PageController extends Controller
             'excerpt' => 'Pelajari fitur-fitur terbaru Laravel 10 dan bagaimana mengimplementasikan best practices dalam pengembangan aplikasi web modern...',
             'tags' => ['Laravel', 'PHP', 'Web Development', 'Framework', 'Best Practices']
         ];
-        
+
         // Sample related articles
         $relatedArticles = [
             [
@@ -82,14 +82,20 @@ class PageController extends Controller
                 'excerpt' => 'Panduan lengkap membuat API yang aman menggunakan Laravel Sanctum...'
             ]
         ];
-        
+
         $services = Service::with(['features'])->orderBy('order')->get();
-        
+
         return view('pages.blog-detail', compact('article', 'relatedArticles', 'services'));
     }
-    
+
     public function portfolio()
     {
         return view('pages.portfolio');
+    }
+
+    public function toko()
+    {
+        // Redirect to TokoController
+        return redirect()->route('toko');
     }
 }

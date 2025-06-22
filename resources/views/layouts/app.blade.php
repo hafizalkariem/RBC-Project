@@ -64,26 +64,25 @@
 
 </head>
 
-<body class="min-h-screen text-white">
+<body class="min-h-screen text-white dark:text-white text-gray-900 transition-colors duration-300 flex flex-col">
     <!-- Animated Background -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
-        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float"></div>
-        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style="animation-delay: 2s;"></div>
-        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-float" style="animation-delay: 4s;"></div>
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-blue-500 dark:bg-blue-500 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 dark:opacity-20 opacity-10 animate-float"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-purple-500 dark:bg-purple-500 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 dark:opacity-20 opacity-10 animate-float" style="animation-delay: 2s;"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-cyan-500 dark:bg-cyan-500 bg-cyan-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 dark:opacity-20 opacity-10 animate-float" style="animation-delay: 4s;"></div>
     </div>
 
     <!-- Header & Navigation -->
     <x-navbar />
+
     <!-- Konten Fullwidth (misal Hero Section) -->
     @yield('fullwidth')
 
-
     <!-- Main Content Area -->
-    <main class="py-12 px-4 relative z-10">
+    <main class="flex-1 relative z-10">
         @yield('content')
-        <!-- Services Grid -->
-
     </main>
+
     <!-- Footer -->
     <x-footer :services="$services" />
 
@@ -114,17 +113,37 @@
             }
         });
 
-        // Dark mode toggle (for demonstration)
-        document.getElementById('darkToggle').addEventListener('click', function() {
-            const icon = this.querySelector('i');
-            if (icon.classList.contains('fa-moon')) {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
+        // Dark mode toggle functionality
+        const darkToggle = document.getElementById('darkToggle');
+        const html = document.documentElement;
+
+        if (darkToggle) {
+            darkToggle.addEventListener('click', function() {
+                const icon = this.querySelector('i');
+
+                // Toggle dark class on html element
+                html.classList.toggle('dark');
+
+                // Toggle icon
+                if (html.classList.contains('dark')) {
+                    icon.classList.remove('fa-sun');
+                    icon.classList.add('fa-moon');
+                    localStorage.setItem('darkMode', 'true');
+                } else {
+                    icon.classList.remove('fa-moon');
+                    icon.classList.add('fa-sun');
+                    localStorage.setItem('darkMode', 'false');
+                }
+            });
+
+            // Load saved dark mode preference
+            const savedDarkMode = localStorage.getItem('darkMode');
+            if (savedDarkMode === 'false') {
+                html.classList.remove('dark');
+                darkToggle.querySelector('i').classList.remove('fa-moon');
+                darkToggle.querySelector('i').classList.add('fa-sun');
             }
-        });
+        }
     </script>
 </body>
 

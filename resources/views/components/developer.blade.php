@@ -202,6 +202,16 @@
         font-size: 0.8rem;
         font-weight: 500;
         transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.4rem;
+    }
+
+    .dev-skill-logo {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+        filter: brightness(1.2);
     }
 
     .dev-team-card:hover .dev-skill-tag {
@@ -273,6 +283,25 @@
             max-width: 100%;
         }
     }
+
+    /* Swiper custom styles */
+    .swiper-button-next,
+    .swiper-button-prev {
+        color: #3b82f6 !important;
+        background: rgba(59, 130, 246, 0.1);
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        backdrop-filter: blur(10px);
+    }
+
+    .swiper-pagination-bullet {
+        background: rgba(255, 255, 255, 0.5) !important;
+    }
+
+    .swiper-pagination-bullet-active {
+        background: #3b82f6 !important;
+    }
 </style>
 
 <section class=" py-16 md:py-24 glass-dark backdrop-blur-xl relative">
@@ -287,233 +316,135 @@
         <p class="dev-section-subtitle">Tim developer berbakat yang siap mewujudkan visi digital Anda dengan keahlian terdepan dalam pengembangan website dan solusi teknologi inovatif.</p>
     </div>
     <div class="hidden sm:grid dev-team-grid sm:mx-8 md:mx-12">
-        <!-- Team Member 1 -->
-        <div class="dev-team-card">
+        @foreach($developers as $developer)
+        <div class="dev-team-card" onclick="window.location.href='{{ route('developer.profile', $developer->id) }}';" style="cursor: pointer;">
             <div class="dev-member-photo">
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Rizki Pratama">
+                <img src="{{ $developer->photo_url }}" alt="{{ $developer->name }}">
             </div>
-            <h3 class="dev-member-name">Ahmad Hapizhudin</h3>
-            <p class="dev-member-role">Lead Full-Stack Developer</p>
+            <h3 class="dev-member-name">{{ $developer->name }}</h3>
+            <p class="dev-member-role">{{ $developer->role }}</p>
             <div class="dev-member-stats">
                 <div class="dev-stat-item">
-                    <span class="dev-stat-number">5+</span>
+                    <span class="dev-stat-number">{{ $developer->years_experience }}+</span>
                     <span class="dev-stat-label">Years</span>
                 </div>
                 <div class="dev-stat-item">
-                    <span class="dev-stat-number">150+</span>
-                    <span class="dev-stat-label">Projects</span>
+                    <span class="dev-stat-number">{{ number_format($developer->projects_completed) }}{{ $developer->projects_completed > 1000000 ? 'M+' : '+' }}</span>
+                    <span class="dev-stat-label">{{ $developer->projects_completed > 1000000 ? 'Requests' : 'Projects' }}</span>
                 </div>
                 <div class="dev-stat-item">
-                    <span class="dev-stat-number">98%</span>
-                    <span class="dev-stat-label">Success</span>
+                    <span class="dev-stat-number">{{ $developer->success_rate }}</span>
+                    <span class="dev-stat-label">{{ str_contains($developer->success_rate, '%') ? 'Success' : 'Awards' }}</span>
                 </div>
             </div>
-            <p class="dev-member-description">Spesialis dalam React, Node.js, dan cloud architecture. Berpengalaman memimpin tim pengembangan aplikasi enterprise dan startup unicorn.</p>
+            <p class="dev-member-description">{{ $developer->description }}</p>
             <div class="dev-member-skills">
-                <span class="dev-skill-tag">React</span>
-                <span class="dev-skill-tag">Node.js</span>
-                <span class="dev-skill-tag">AWS</span>
-                <span class="dev-skill-tag">Docker</span>
+                @foreach($developer->skills as $skill)
+                <div class="dev-skill-tag">
+                    @if($skill->technology->logo_url)
+                    <img src="{{ $skill->technology->logo_url }}" alt="{{ $skill->technology->name }}" class="dev-skill-logo">
+                    @endif
+                    <span>{{ $skill->technology->name }}</span>
+                </div>
+                @endforeach
             </div>
             <div class="dev-social-links">
-                <a href="#" class="dev-social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="dev-social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="dev-social-link"><i class="fas fa-globe"></i></a>
+                @if($developer->github_url)
+                <a href="{{ $developer->github_url }}" class="dev-social-link" target="_blank" onclick="event.stopPropagation();"><i class="fab fa-github"></i></a>
+                @endif
+                @if($developer->linkedin_url)
+                <a href="{{ $developer->linkedin_url }}" class="dev-social-link" target="_blank" onclick="event.stopPropagation();"><i class="fab fa-linkedin"></i></a>
+                @endif
+                @if($developer->portfolio_url)
+                <a href="{{ $developer->portfolio_url }}" class="dev-social-link" target="_blank" onclick="event.stopPropagation();"><i class="fas fa-globe"></i></a>
+                @endif
             </div>
         </div>
-        <!-- Team Member 2 -->
-        <div class="dev-team-card">
-            <div class="dev-member-photo">
-                <img src="https://images.unsplash.com/photo-1494790108755-2616b332c2b1?w=150&h=150&fit=crop&crop=face" alt="Bella Sari">
-            </div>
-            <h3 class="dev-member-name">Nurul Akbar</h3>
-            <p class="dev-member-role">UI/UX Designer & Frontend Dev</p>
-            <div class="dev-member-stats">
-                <div class="dev-stat-item">
-                    <span class="dev-stat-number">4+</span>
-                    <span class="dev-stat-label">Years</span>
-                </div>
-                <div class="dev-stat-item">
-                    <span class="dev-stat-number">200+</span>
-                    <span class="dev-stat-label">Designs</span>
-                </div>
-                <div class="dev-stat-item">
-                    <span class="dev-stat-number">15</span>
-                    <span class="dev-stat-label">Awards</span>
-                </div>
-            </div>
-            <p class="dev-member-description">Desainer kreatif dengan keahlian coding. Ahli dalam menciptakan pengalaman user yang menawan dan interface yang responsif.</p>
-            <div class="dev-member-skills">
-                <span class="dev-skill-tag">Figma</span>
-                <span class="dev-skill-tag">Vue.js</span>
-                <span class="dev-skill-tag">SASS</span>
-                <span class="dev-skill-tag">Animation</span>
-            </div>
-            <div class="dev-social-links">
-                <a href="#" class="dev-social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="dev-social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="dev-social-link"><i class="fas fa-palette"></i></a>
-            </div>
-        </div>
-        <!-- Team Member 3 -->
-        <div class="dev-team-card">
-            <div class="dev-member-photo">
-                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face" alt="Cahyo Nugroho">
-            </div>
-            <h3 class="dev-member-name">M Dzaki Abiyyu</h3>
-            <p class="dev-member-role">Backend Architect & DevOps</p>
-            <div class="dev-member-stats">
-                <div class="dev-stat-item">
-                    <span class="dev-stat-number">6+</span>
-                    <span class="dev-stat-label">Years</span>
-                </div>
-                <div class="dev-stat-item">
-                    <span class="dev-stat-number">99.9%</span>
-                    <span class="dev-stat-label">Uptime</span>
-                </div>
-                <div class="dev-stat-item">
-                    <span class="dev-stat-number">50M+</span>
-                    <span class="dev-stat-label">Requests</span>
-                </div>
-            </div>
-            <p class="dev-member-description">Arsitek sistem yang handal dalam membangun infrastruktur scalable. Expert dalam microservices dan cloud optimization.</p>
-            <div class="dev-member-skills">
-                <span class="dev-skill-tag">Python</span>
-                <span class="dev-skill-tag">Kubernetes</span>
-                <span class="dev-skill-tag">PostgreSQL</span>
-                <span class="dev-skill-tag">Redis</span>
-            </div>
-            <div class="dev-social-links">
-                <a href="#" class="dev-social-link"><i class="fab fa-github"></i></a>
-                <a href="#" class="dev-social-link"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="dev-social-link"><i class="fas fa-server"></i></a>
-            </div>
-        </div>
+        @endforeach
     </div>
     <div class="block sm:hidden mx-4">
         <div class="swiper" id="devSwiper">
             <div class="swiper-wrapper">
+                @foreach($developers as $developer)
                 <div class="swiper-slide">
-                    <div class="dev-team-card mx-2">
+                    <div class="dev-team-card mx-2" onclick="window.location.href='{{ route('developer.profile', $developer->id) }}';" style="cursor: pointer;">
                         <div class="dev-member-photo">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Rizki Pratama">
+                            <img src="{{ $developer->photo_url }}" alt="{{ $developer->name }}">
                         </div>
-                        <h3 class="dev-member-name">Ahmad Hapizhudin</h3>
-                        <p class="dev-member-role">Lead Full-Stack Developer</p>
+                        <h3 class="dev-member-name">{{ $developer->name }}</h3>
+                        <p class="dev-member-role">{{ $developer->role }}</p>
                         <div class="dev-member-stats">
                             <div class="dev-stat-item">
-                                <span class="dev-stat-number">5+</span>
+                                <span class="dev-stat-number">{{ $developer->years_experience }}+</span>
                                 <span class="dev-stat-label">Years</span>
                             </div>
                             <div class="dev-stat-item">
-                                <span class="dev-stat-number">150+</span>
-                                <span class="dev-stat-label">Projects</span>
+                                <span class="dev-stat-number">{{ number_format($developer->projects_completed) }}{{ $developer->projects_completed > 1000000 ? 'M+' : '+' }}</span>
+                                <span class="dev-stat-label">{{ $developer->projects_completed > 1000000 ? 'Requests' : 'Projects' }}</span>
                             </div>
                             <div class="dev-stat-item">
-                                <span class="dev-stat-number">98%</span>
-                                <span class="dev-stat-label">Success</span>
+                                <span class="dev-stat-number">{{ $developer->success_rate }}</span>
+                                <span class="dev-stat-label">{{ str_contains($developer->success_rate, '%') ? 'Success' : 'Awards' }}</span>
                             </div>
                         </div>
-                        <p class="dev-member-description">Spesialis dalam React, Node.js, dan cloud architecture. Berpengalaman memimpin tim pengembangan aplikasi enterprise dan startup unicorn.</p>
+                        <p class="dev-member-description">{{ $developer->description }}</p>
                         <div class="dev-member-skills">
-                            <span class="dev-skill-tag">React</span>
-                            <span class="dev-skill-tag">Node.js</span>
-                            <span class="dev-skill-tag">AWS</span>
-                            <span class="dev-skill-tag">Docker</span>
+                            @foreach($developer->skills as $skill)
+                            <div class="dev-skill-tag">
+                                @if($skill->technology->logo_url)
+                                <img src="{{ $skill->technology->logo_url }}" alt="{{ $skill->technology->name }}" class="dev-skill-logo">
+                                @endif
+                                <span>{{ $skill->technology->name }}</span>
+                            </div>
+                            @endforeach
                         </div>
                         <div class="dev-social-links">
-                            <a href="#" class="dev-social-link"><i class="fab fa-github"></i></a>
-                            <a href="#" class="dev-social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="dev-social-link"><i class="fas fa-globe"></i></a>
+                            @if($developer->github_url)
+                            <a href="{{ $developer->github_url }}" class="dev-social-link" target="_blank" onclick="event.stopPropagation();"><i class="fab fa-github"></i></a>
+                            @endif
+                            @if($developer->linkedin_url)
+                            <a href="{{ $developer->linkedin_url }}" class="dev-social-link" target="_blank" onclick="event.stopPropagation();"><i class="fab fa-linkedin"></i></a>
+                            @endif
+                            @if($developer->portfolio_url)
+                            <a href="{{ $developer->portfolio_url }}" class="dev-social-link" target="_blank" onclick="event.stopPropagation();"><i class="fas fa-globe"></i></a>
+                            @endif
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="dev-team-card mx-2">
-                        <div class="dev-member-photo">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Rizki Pratama">
-                        </div>
-                        <h3 class="dev-member-name">Ahmad Hapizhudin</h3>
-                        <p class="dev-member-role">Lead Full-Stack Developer</p>
-                        <div class="dev-member-stats">
-                            <div class="dev-stat-item">
-                                <span class="dev-stat-number">5+</span>
-                                <span class="dev-stat-label">Years</span>
-                            </div>
-                            <div class="dev-stat-item">
-                                <span class="dev-stat-number">150+</span>
-                                <span class="dev-stat-label">Projects</span>
-                            </div>
-                            <div class="dev-stat-item">
-                                <span class="dev-stat-number">98%</span>
-                                <span class="dev-stat-label">Success</span>
-                            </div>
-                        </div>
-                        <p class="dev-member-description">Spesialis dalam React, Node.js, dan cloud architecture. Berpengalaman memimpin tim pengembangan aplikasi enterprise dan startup unicorn.</p>
-                        <div class="dev-member-skills">
-                            <span class="dev-skill-tag">React</span>
-                            <span class="dev-skill-tag">Node.js</span>
-                            <span class="dev-skill-tag">AWS</span>
-                            <span class="dev-skill-tag">Docker</span>
-                        </div>
-                        <div class="dev-social-links">
-                            <a href="#" class="dev-social-link"><i class="fab fa-github"></i></a>
-                            <a href="#" class="dev-social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="dev-social-link"><i class="fas fa-globe"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="dev-team-card mx-2">
-                        <div class="dev-member-photo">
-                            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face" alt="Rizki Pratama">
-                        </div>
-                        <h3 class="dev-member-name">Ahmad Hapizhudin</h3>
-                        <p class="dev-member-role">Lead Full-Stack Developer</p>
-                        <div class="dev-member-stats">
-                            <div class="dev-stat-item">
-                                <span class="dev-stat-number">5+</span>
-                                <span class="dev-stat-label">Years</span>
-                            </div>
-                            <div class="dev-stat-item">
-                                <span class="dev-stat-number">150+</span>
-                                <span class="dev-stat-label">Projects</span>
-                            </div>
-                            <div class="dev-stat-item">
-                                <span class="dev-stat-number">98%</span>
-                                <span class="dev-stat-label">Success</span>
-                            </div>
-                        </div>
-                        <p class="dev-member-description">Spesialis dalam React, Node.js, dan cloud architecture. Berpengalaman memimpin tim pengembangan aplikasi enterprise dan startup unicorn.</p>
-                        <div class="dev-member-skills">
-                            <span class="dev-skill-tag">React</span>
-                            <span class="dev-skill-tag">Node.js</span>
-                            <span class="dev-skill-tag">AWS</span>
-                            <span class="dev-skill-tag">Docker</span>
-                        </div>
-                        <div class="dev-social-links">
-                            <a href="#" class="dev-social-link"><i class="fab fa-github"></i></a>
-                            <a href="#" class="dev-social-link"><i class="fab fa-linkedin"></i></a>
-                            <a href="#" class="dev-social-link"><i class="fas fa-globe"></i></a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="swiper-pagination"></div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
         </div>
     </div>
 </section>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        if (window.innerWidth < 640) {
-            new Swiper('#devSwiper', {
-                slidesPerView: 1,
-                spaceBetween: 16,
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-            });
-        }
+        // Initialize Swiper for mobile
+        const devSwiper = new Swiper('#devSwiper', {
+            slidesPerView: 1,
+            spaceBetween: 16,
+            centeredSlides: true,
+            loop: true,
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    enabled: false,
+                }
+            }
+        });
     });
 </script>

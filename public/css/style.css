@@ -27,4 +27,79 @@
         body {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         }
+
+        /* Light mode styles */
+        html:not(.dark) body {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            color: #1e293b;
+        }
+
+        html:not(.dark) .text-white {
+            color: #1e293b !important;
+        }
+
+        html:not(.dark) .glass {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        html:not(.dark) .glass-card {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #1e293b;
+        }
+
+        html:not(.dark) .glass-dark {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        /* Light mode untuk semua komponen */
+        html:not(.dark) .glass-button {
+            background: rgba(59, 130, 246, 0.8);
+            color: white;
+        }
+
+        html:not(.dark) .text-white {
+            color: #1e293b !important;
+        }
+
+        html:not(.dark) .text-white\/90 {
+            color: #334155 !important;
+        }
+
+        html:not(.dark) .text-white\/80 {
+            color: #475569 !important;
+        }
+
+        html:not(.dark) .text-white\/70 {
+            color: #64748b !important;
+        }
+
+        html:not(.dark) .text-white\/60 {
+            color: #94a3b8 !important;
+        }
+
+        html:not(.dark) .text-white\/50 {
+            color: #cbd5e1 !important;
+        }
+
+        html:not(.dark) .text-gray-300 {
+            color: #64748b !important;
+        }
+
+        html:not(.dark) .text-gray-400 {
+            color: #94a3b8 !important;
+        }
+
+        html:not(.dark) .placeholder-white\/60::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        html:not(.dark) .placeholder-white\/70::placeholder {
+            color: #64748b !important;
+        }
        
