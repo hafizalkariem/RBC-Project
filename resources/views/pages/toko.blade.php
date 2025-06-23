@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('head')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+@endsection
+
 @section('fullwidth')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -244,7 +248,66 @@ document.addEventListener('DOMContentLoaded', function() {
             performSearch();
         });
     }
+
+    // Load cart count on page load
+    updateCartCount();
 });
+
+// Add to cart function
+function addToCart(productId) {
+    fetch(`/cart/add/${productId}`, {
+        method: 'POST',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            updateCartCount();
+            // Show success message
+            showNotification('Product added to cart!', 'success');
+        } else if (data.error) {
+            showNotification(data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        showNotification('Please login first', 'error');
+    });
+}
+
+// Update cart count
+function updateCartCount() {
+    fetch('/cart/count')
+    .then(response => response.json())
+    .then(data => {
+        const cartBadge = document.querySelector('.cart-count');
+        if (cartBadge) {
+            cartBadge.textContent = data.count;
+            cartBadge.style.display = data.count > 0 ? 'inline' : 'none';
+        }
+    })
+    .catch(error => console.error('Error updating cart count:', error));
+}
+
+// Show notification
+function showNotification(message, type) {
+    const notification = document.createElement('div');
+    notification.className = `fixed top-4 right-4 px-6 py-3 rounded-lg text-white z-50 transition-all duration-300 ${
+        type === 'success' ? 'bg-green-500' : 'bg-red-500'
+    }`;
+    notification.textContent = message;
+    
+    document.body.appendChild(notification);
+    
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        setTimeout(() => notification.remove(), 300);
+    }, 3000);
+}
 </script>
 <!-- </body> -->
 @endsection

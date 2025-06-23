@@ -44,10 +44,10 @@
             <div class="flex items-center space-x-4">
                 @auth
                     <!-- Cart (hanya tampil saat login) -->
-                    <button class="glass p-2 rounded-lg hover:bg-blue-500/20 transition-all duration-300 group">
+                    <a href="{{ route('cart.index') }}" class="glass p-2 rounded-lg hover:bg-blue-500/20 transition-all duration-300 group">
                         <i class="fas fa-shopping-cart text-gray-300 dark:text-gray-300 text-gray-700 group-hover:text-white dark:group-hover:text-white group-hover:text-gray-900 text-base md:text-lg"></i>
-                        <span class="ml-2 text-xs md:text-sm bg-blue-500 text-white px-2 py-1 rounded-full hidden md:inline">3</span>
-                    </button>
+                        <span class="cart-count ml-2 text-xs md:text-sm bg-blue-500 text-white px-2 py-1 rounded-full hidden md:inline">0</span>
+                    </a>
                     
                     <!-- Profile Dropdown -->
                     <div x-data="{ profileOpen: false }" class="relative hidden md:block">
@@ -70,6 +70,9 @@
                                 </a>
                                 <a href="/admin" class="block px-4 py-2 text-gray-300 hover:text-white hover:bg-blue-500/20 transition-colors duration-300">
                                     <i class="fas fa-blog mr-2"></i>Admin Blog
+                                </a>
+                                <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white hover:bg-green-500/20 transition-colors duration-300">
+                                    <i class="fas fa-box mr-2"></i>Products
                                 </a>
                             @endif
                             <hr class="my-2 border-gray-700">

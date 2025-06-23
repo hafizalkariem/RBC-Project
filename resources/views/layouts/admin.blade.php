@@ -108,26 +108,10 @@
                         <i class="fas fa-tachometer-alt mr-3 {{ request()->routeIs('admin.dashboard') ? 'text-red-400' : 'icon-glow' }}"></i>Dashboard
                     </a>
 
-                    <!-- Manajemen Produk -->
-                    <div>
-                        <button @click="openMenus.products = !openMenus.products" class="menu-item-hover w-full flex items-center justify-between px-4 py-3 text-gray-300 hover:text-white rounded-lg transition-all duration-300">
-                            <div class="flex items-center whitespace-nowrap">
-                                <i class="fas fa-box mr-3 icon-glow"></i>Manajemen Produk
-                            </div>
-                            <i class="fas fa-chevron-down transition-transform icon-glow" :class="openMenus.products ? 'rotate-180' : ''"></i>
-                        </button>
-                        <div x-show="openMenus.products" x-transition class="ml-6 mt-2 space-y-1">
-                            <a href="#" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
-                                <i class="fas fa-list mr-2 text-red-400"></i>Daftar Produk
-                            </a>
-                            <a href="#" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
-                                <i class="fas fa-plus mr-2 text-red-400"></i>Tambah Produk
-                            </a>
-                            <a href="#" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
-                                <i class="fas fa-tags mr-2 text-red-400"></i>Kategori
-                            </a>
-                        </div>
-                    </div>
+                    <!-- Products -->
+                    <a href="{{ route('admin.products') }}" class="menu-item-hover flex items-center px-4 py-3 {{ request()->routeIs('admin.products') ? 'text-white bg-red-500/20 border-l-4 border-red-500' : 'text-gray-300' }} hover:text-white rounded-lg transition-all duration-300">
+                        <i class="fas fa-box mr-3 {{ request()->routeIs('admin.products') ? 'text-red-400' : 'icon-glow' }}"></i>Products
+                    </a>
 
                     <!-- Transaksi -->
                     <div>

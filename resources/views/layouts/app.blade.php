@@ -4,7 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>RBC Project - Modern Digital Solutions</title>
+    @yield('head')
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -143,6 +145,25 @@
                 darkToggle.querySelector('i').classList.remove('fa-moon');
                 darkToggle.querySelector('i').classList.add('fa-sun');
             }
+        }
+
+        // Update cart count function
+        function updateCartCount() {
+            fetch('/cart/count')
+            .then(response => response.json())
+            .then(data => {
+                const cartBadge = document.querySelector('.cart-count');
+                if (cartBadge) {
+                    cartBadge.textContent = data.count;
+                    cartBadge.style.display = data.count > 0 ? 'inline' : 'none';
+                }
+            })
+            .catch(error => console.error('Error updating cart count:', error));
+        }
+
+        // Update cart count on page load
+        if (document.querySelector('.cart-count')) {
+            updateCartCount();
         }
     </script>
 </body>

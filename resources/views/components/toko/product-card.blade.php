@@ -53,7 +53,7 @@
                 <span class="text-sm text-white/50 line-through ml-2">Rp {{ number_format($product->original_price, 0, ',', '.') }}</span>
                 @endif
             </div>
-            <button class="glass-button px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105">
+            <button onclick="addToCart({{ $product->id }})" class="glass-button px-6 py-3 rounded-xl text-white font-semibold transition-all duration-300 hover:scale-105">
                 <i class="fas fa-shopping-cart mr-2"></i>Beli
             </button>
         </div>
