@@ -1,12 +1,12 @@
 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
     <!-- Categories -->
-    <div class="glass-dark rounded-xl p-6 hover-lift animate-slideIn">
+    <div class="glass-dark rounded-xl p-6 hover-lift" data-aos="slide-right">
         <div class="flex justify-between items-center mb-6">
             <div>
                 <h3 class="text-xl font-bold gradient-text mb-1">Categories</h3>
                 <p class="text-gray-400 text-sm">Product categories</p>
             </div>
-            <button class="text-red-400 hover:text-red-300 hover:bg-red-500/10 p-2 rounded-lg transition-all duration-300 hover-lift">
+            <button onclick="openAddCategoryModal()" class="text-red-400 hover:text-red-300 hover:bg-red-500/10 p-2 rounded-lg transition-all duration-300 hover-lift">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
@@ -28,19 +28,19 @@
     </div>
 
     <!-- Technologies -->
-    <div class="glass-dark rounded-xl p-6 hover-lift animate-slideIn" style="animation-delay: 0.2s;">
+    <div class="glass-dark rounded-xl p-6 hover-lift" data-aos="slide-right" data-aos-delay="100">
         <div class="flex justify-between items-center mb-6">
             <div>
                 <h3 class="text-xl font-bold gradient-text mb-1">Technologies</h3>
                 <p class="text-gray-400 text-sm">Tech stack overview</p>
             </div>
-            <button class="text-red-400 hover:text-red-300 hover:bg-red-500/10 p-2 rounded-lg transition-all duration-300 hover-lift">
+            <button onclick="openAddTechnologyModal()" class="text-red-400 hover:text-red-300 hover:bg-red-500/10 p-2 rounded-lg transition-all duration-300 hover-lift">
                 <i class="fas fa-plus"></i>
             </button>
         </div>
         <div class="flex flex-wrap gap-3">
             @forelse($technologies as $index => $tech)
-            <span class="tech-tag bg-{{ ['red', 'cyan', 'green', 'blue', 'purple', 'yellow', 'pink', 'orange'][$index % 8] }}-500/20 text-{{ ['red', 'cyan', 'green', 'blue', 'purple', 'yellow', 'pink', 'orange'][$index % 8] }}-400 px-3 py-2 rounded-lg text-sm font-medium">
+            <span onclick="showTechModal({{ $tech->id }})" class="tech-tag bg-slate-800/50 px-3 py-2 rounded-lg text-sm font-medium cursor-pointer hover:bg-slate-700/50 transition-all duration-300">
                 @if($tech->logo_url)
                 <img src="{{ $tech->logo_url }}" alt="{{ $tech->name }}" class="w-4 h-4 inline-block mr-2">
                 @endif
@@ -53,7 +53,7 @@
     </div>
 
     <!-- Sales Performance -->
-    <div class="glass-dark rounded-xl p-6 hover-lift animate-slideIn" style="animation-delay: 0.4s;">
+    <div class="glass-dark rounded-xl p-6 hover-lift" data-aos="slide-right" data-aos-delay="200">
         <div class="flex justify-between items-center mb-6">
             <div>
                 <h3 class="text-xl font-bold gradient-text mb-1">Sales Performance</h3>

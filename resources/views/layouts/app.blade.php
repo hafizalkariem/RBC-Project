@@ -161,10 +161,12 @@
             .catch(error => console.error('Error updating cart count:', error));
         }
 
-        // Update cart count on page load
+        // Update cart count on page load (only if user is authenticated)
+        @auth
         if (document.querySelector('.cart-count')) {
             updateCartCount();
         }
+        @endauth
     </script>
 </body>
 

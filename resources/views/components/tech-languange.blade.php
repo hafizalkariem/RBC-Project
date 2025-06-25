@@ -189,9 +189,22 @@
             </p>
 
             <div class="flex flex-wrap justify-center gap-4">
-                <span class="category-badge rounded-full px-4 py-2 text-white/90 text-sm font-medium">15+ Bahasa Pemrograman</span>
-                <span class="category-badge rounded-full px-4 py-2 text-white/90 text-sm font-medium">25+ Framework</span>
-                <span class="category-badge rounded-full px-4 py-2 text-white/90 text-sm font-medium">10+ Database</span>
+                @php
+                    $languageCount = \App\Models\Technology::where('type', 'language')->count();
+                    $frameworkCount = \App\Models\Technology::where('type', 'framework')->count();
+                    $databaseCount = \App\Models\Technology::where('type', 'database')->count();
+                    $libraryCount = \App\Models\Technology::where('type', 'library')->count();
+                    $toolCount = \App\Models\Technology::where('type', 'tool')->count();
+                @endphp
+                <span class="category-badge rounded-full px-4 py-2 text-white/90 text-sm font-medium">{{ $languageCount }}+ Bahasa Pemrograman</span>
+                <span class="category-badge rounded-full px-4 py-2 text-white/90 text-sm font-medium">{{ $frameworkCount }}+ Framework</span>
+                <span class="category-badge rounded-full px-4 py-2 text-white/90 text-sm font-medium">{{ $databaseCount }}+ Database</span>
+                @if($libraryCount > 0)
+                <span class="category-badge rounded-full px-4 py-2 text-white/90 text-sm font-medium">{{ $libraryCount }}+ Library</span>
+                @endif
+                @if($toolCount > 0)
+                <span class="category-badge rounded-full px-4 py-2 text-white/90 text-sm font-medium">{{ $toolCount }}+ Tools</span>
+                @endif
             </div>
         </div>
 

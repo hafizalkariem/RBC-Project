@@ -12,6 +12,7 @@ class Technology extends Model
     protected $fillable = [
         'tech_category_id',
         'name',
+        'type',
         'description',
         'logo_url',
         'expertise_level',

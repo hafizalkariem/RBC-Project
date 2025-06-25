@@ -87,6 +87,36 @@
         transform: translateY(-2px);
         box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
     }
+
+    .product-image {
+        background: linear-gradient(45deg, #374151, #4b5563);
+        position: relative;
+    }
+
+    .product-image::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 40px;
+        height: 40px;
+        border: 3px solid rgba(255, 255, 255, 0.3);
+        border-top: 3px solid rgba(255, 255, 255, 0.8);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .product-image.loading::before {
+        opacity: 1;
+    }
+
+    @keyframes spin {
+        0% { transform: translate(-50%, -50%) rotate(0deg); }
+        100% { transform: translate(-50%, -50%) rotate(360deg); }
+    }
 </style>
 
 <!-- <body class="dark:bg-gray-900 bg-gray-50 min-h-screen transition-colors duration-300"> -->
@@ -251,6 +281,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Load cart count on page load
     updateCartCount();
+
+    // Handle image loading
+    const productImages = document.querySelectorAll('.product-image img');
+    productImages.forEach(img => {
+        if (img.complete) {
+            img.parentElement.classList.remove('loading');
+        } else {
+            img.parentElement.classList.add('loading');
+            img.addEventListener('load', () => {
+                img.parentElement.classList.remove('loading');
+            });
+            img.addEventListener('error', () => {
+                img.parentElement.classList.remove('loading');
+            });
+        }
+    });
 });
 
 // Add to cart function

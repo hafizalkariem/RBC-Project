@@ -44,14 +44,12 @@
                     </div>
                     <div>
                         <label class="block text-gray-300 mb-2">Price</label>
-                        <div class="bg-slate-800 p-3 rounded-lg text-green-400 font-bold">${{ number_format($product->price, 0) }}</div>
+                        <div class="bg-slate-800 p-3 rounded-lg text-green-400 font-bold">Rp. {{ number_format($product->price, 0) }}</div>
                     </div>
                     <div>
                         <label class="block text-gray-300 mb-2">Status</label>
                         <div class="bg-slate-800 p-3 rounded-lg">
-                            <span class="bg-{{ $product->status == 'active' ? 'green' : 'red' }}-500/20 text-{{ $product->status == 'active' ? 'green' : 'red' }}-400 px-3 py-1 rounded-full text-sm">
-                                {{ ucfirst($product->status) }}
-                            </span>
+                            <x-product-status :status="$product->status" />
                         </div>
                     </div>
                 </div>
@@ -66,8 +64,12 @@
                 <h2 class="text-xl font-bold text-white mb-4">Technologies Used</h2>
                 <div class="flex flex-wrap gap-3">
                     @forelse($product->technologies as $tech)
-                    <span class="bg-blue-500/20 text-blue-400 px-3 py-2 rounded-lg text-sm">{{ $tech->name }}</span>
-                    @empty
+                    <span class="bg-blue-500/20 text-blue-400 px-3 py-2 rounded-lg text-sm flex items-center gap-2">
+                        @if($tech->logo_url)
+                        <img src="{{ $tech->logo_url }}" alt="{{ $tech->name }}" class="w-4 h-4">
+                        @endif
+                        {{ $tech->name }}
+                    </span> @empty
                     <p class="text-gray-400">No technologies specified</p>
                     @endforelse
                 </div>
@@ -82,15 +84,15 @@
                 <div class="space-y-4">
                     <div class="flex justify-between items-center">
                         <span class="text-gray-300">Sales</span>
-                        <span class="text-white font-bold">{{ rand(10, 50) }}</span>
+                        <span class="text-white font-bold">{{ $product->orderItems->sum('quantity') ?? 0 }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-gray-300">Revenue</span>
-                        <span class="text-green-400 font-bold">${{ number_format($product->price * rand(10, 50), 0) }}</span>
+                        <span class="text-green-400 font-bold">Rp. {{ number_format($product->orderItems->sum(function($item) { return $item->quantity * $item->price; }) ?? 0, 0) }}</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-gray-300">Views</span>
-                        <span class="text-white font-bold">{{ rand(100, 1000) }}</span>
+                        <span class="text-white font-bold">{{ $product->views ?? 0 }}</span>
                     </div>
                 </div>
             </div>
@@ -100,9 +102,7 @@
             <div class="glass-dark rounded-xl p-6">
                 <h2 class="text-xl font-bold text-white mb-4">Developer</h2>
                 <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
-                        <i class="fas fa-user text-white"></i>
-                    </div>
+                    <img src="{{ $product->developer->photo_url }}" alt="{{ $product->developer->name }}" class="w-12 h-12 rounded-full object-cover">
                     <div>
                         <div class="text-white font-medium">{{ $product->developer->name }}</div>
                         <div class="text-gray-400 text-sm">{{ $product->developer->role }}</div>

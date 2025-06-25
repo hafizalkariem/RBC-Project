@@ -1,4 +1,4 @@
-<div class="glass-dark rounded-xl p-6 mt-8 hover-lift animate-fadeInUp" style="animation-delay: 1s;">
+<div class="glass-dark rounded-xl p-6 mt-8 hover-lift" data-aos="fade-up">
     <div class="flex justify-between items-center mb-6">
         <div>
             <h3 class="text-xl font-bold gradient-text mb-1">Top Selling Products</h3>
@@ -11,7 +11,7 @@
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         @foreach($products->take(3) as $index => $product)
-        <a href="{{ route('admin.products.show', $product) }}" class="block relative bg-gradient-to-br from-{{ ['red', 'cyan', 'purple'][$index] }}-500/10 to-{{ ['red', 'blue', 'pink'][$index] }}-600/5 border border-{{ ['red', 'cyan', 'purple'][$index] }}-500/20 rounded-xl p-6 hover-lift transition-all duration-300 overflow-hidden cursor-pointer">
+        <a href="{{ route('admin.products.show', $product) }}" class="block relative bg-gradient-to-br from-{{ ['red', 'cyan', 'purple'][$index] }}-500/10 to-{{ ['red', 'blue', 'pink'][$index] }}-600/5 border border-{{ ['red', 'cyan', 'purple'][$index] }}-500/20 rounded-xl p-6 hover-lift transition-all duration-300 overflow-hidden cursor-pointer" data-aos="flip-left" data-aos-delay="{{ $index * 100 }}">
             <div class="absolute top-0 right-0 w-20 h-20 bg-{{ ['red', 'cyan', 'purple'][$index] }}-500/10 rounded-full -mr-10 -mt-10"></div>
             <div class="relative">
                 <div class="flex items-center justify-between mb-4">

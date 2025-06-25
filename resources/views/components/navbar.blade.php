@@ -96,6 +96,47 @@
                     </a>
                 @endauth
                 
+                @auth
+                    <!-- Mobile Profile Button -->
+                    <div x-data="{ profileOpen: false }" class="relative md:hidden">
+                        <button @click="profileOpen = !profileOpen" class="flex items-center space-x-2 glass p-2 rounded-lg hover:bg-blue-500/20 transition-all duration-300">
+                            <img src="https://ui-avatars.com/api/?name={{ Auth::user()->name }}&background=3b82f6&color=fff" alt="Profile" class="w-8 h-8 rounded-full">
+                        </button>
+                        
+                        <div x-show="profileOpen" @click.away="profileOpen = false" x-transition class="absolute right-0 mt-2 w-48 bg-slate-900/95 rounded-lg shadow-lg py-2 z-50">
+                            <a href="{{ route('profile') }}" class="block px-4 py-2 text-gray-300 hover:text-white hover:bg-blue-500/20 transition-colors duration-300">
+                                <i class="fas fa-user mr-2"></i>Profile
+                            </a>
+                            <a href="#" class="block px-4 py-2 text-gray-300 hover:text-white hover:bg-blue-500/20 transition-colors duration-300">
+                                <i class="fas fa-cog mr-2"></i>Setting
+                            </a>
+                            @if(Auth::user()->roles()->whereIn('name', ['admin', 'developer'])->exists())
+                                <hr class="my-2 border-gray-700">
+                                <a href="{{ route('admin.dashboard') }}" class="block px-4 py-2 text-gray-300 hover:text-white hover:bg-purple-500/20 transition-colors duration-300">
+                                    <i class="fas fa-tachometer-alt mr-2"></i>Admin Dashboard
+                                </a>
+                            @endif
+                            <hr class="my-2 border-gray-700">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="w-full text-left px-4 py-2 text-gray-300 hover:text-white hover:bg-red-500/20 transition-colors duration-300">
+                                    <i class="fas fa-sign-out-alt mr-2"></i>Logout
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <!-- Mobile Auth Buttons -->
+                    <div class="flex items-center space-x-2 md:hidden">
+                        <a href="{{ route('login') }}" class="glass px-3 py-2 rounded-lg text-gray-300 hover:text-white hover:bg-blue-500/20 transition-all duration-300 text-sm">
+                            Masuk
+                        </a>
+                        <a href="{{ route('register') }}" class="bg-gradient-to-r from-blue-500 to-purple-600 px-3 py-2 rounded-lg text-white hover:from-blue-600 hover:to-purple-700 transition-all duration-300 text-sm">
+                            Daftar
+                        </a>
+                    </div>
+                @endauth
+                
                 <!-- Mobile Menu Button -->
                 <button @click="open = !open" class="md:hidden glass p-2 rounded-lg">
                     <i class="fas fa-bars text-gray-300 dark:text-gray-300 text-gray-700 text-lg"></i>

@@ -68,5 +68,20 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', App\Http\Middleware\AdminMiddleware::class])->prefix('admin')->group(function () {
     Route::get('/dashboard', [App\Http\Controllers\AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('/products', [App\Http\Controllers\Admin\ProductController::class, 'index'])->name('admin.products');
+    Route::get('/products/search', [App\Http\Controllers\Admin\ProductController::class, 'search'])->name('admin.products.search');
+    Route::get('/products/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('admin.products.create');
+    Route::post('/products', [App\Http\Controllers\Admin\ProductController::class, 'store'])->name('admin.products.store');
     Route::get('/products/{product}', [App\Http\Controllers\Admin\ProductController::class, 'show'])->name('admin.products.show');
+    Route::get('/products/{product}/edit', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('admin.products.edit');
+    Route::put('/products/{product}', [App\Http\Controllers\Admin\ProductController::class, 'update'])->name('admin.products.update');
+    Route::post('/products/{product}', [App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('admin.products.destroy');
+    
+    // Categories
+    Route::post('/categories', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('admin.categories.store');
+    
+    // Technologies
+    Route::post('/technologies', [App\Http\Controllers\Admin\TechnologyController::class, 'store'])->name('admin.technologies.store');
+    Route::get('/technologies/{technology}/stats', [App\Http\Controllers\Admin\TechnologyController::class, 'stats'])->name('admin.technologies.stats');
+    Route::post('/technologies/{technology}', [App\Http\Controllers\Admin\TechnologyController::class, 'destroy'])->name('admin.technologies.destroy');
+    Route::post('/products/detect-technologies', [App\Http\Controllers\Admin\ProductController::class, 'detectTechnologies'])->name('admin.products.detect-technologies');
 });

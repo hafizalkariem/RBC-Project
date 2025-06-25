@@ -20,6 +20,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'HTML5',
+                'type' => 'language',
                 'description' => 'Struktur Web Modern',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg',
                 'expertise_level' => 5,
@@ -28,6 +29,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'CSS3',
+                'type' => 'language',
                 'description' => 'Styling & Animation',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg',
                 'expertise_level' => 5,
@@ -36,6 +38,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'JavaScript',
+                'type' => 'language',
                 'description' => 'ES6+ & TypeScript',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg',
                 'expertise_level' => 5,
@@ -44,6 +47,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'React.js',
+                'type' => 'framework',
                 'description' => 'Component Library',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
                 'expertise_level' => 4,
@@ -52,6 +56,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'Tailwind CSS',
+                'type' => 'framework',
                 'description' => 'Utility-first CSS Framework',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg',
                 'expertise_level' => 5,
@@ -60,6 +65,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'Bootstrap',
+                'type' => 'framework',
                 'description' => 'CSS Framework for Responsive Design',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg',
                 'expertise_level' => 4,
@@ -68,6 +74,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'SASS',
+                'type' => 'tool',
                 'description' => 'CSS Preprocessor',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg',
                 'expertise_level' => 4,
@@ -76,6 +83,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'Vue.js',
+                'type' => 'framework',
                 'description' => 'Progressive Framework',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
                 'expertise_level' => 4,
@@ -84,6 +92,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'jQuery',
+                'type' => 'library',
                 'description' => 'Fast JavaScript Library',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jquery/jquery-original.svg',
                 'expertise_level' => 4,
@@ -92,6 +101,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $frontend->id,
                 'name' => 'TypeScript',
+                'type' => 'language',
                 'description' => 'Typed JavaScript',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
                 'expertise_level' => 3,
@@ -109,6 +119,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $backend->id,
                 'name' => 'PHP',
+                'type' => 'language',
                 'description' => 'Laravel, CodeIgniter',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg',
                 'expertise_level' => 5,
@@ -141,6 +152,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $backend->id,
                 'name' => 'Laravel',
+                'type' => 'framework',
                 'description' => 'PHP Framework for Web Artisans',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-plain.svg',
                 'expertise_level' => 5,
@@ -214,6 +226,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $database->id,
                 'name' => 'MySQL',
+                'type' => 'database',
                 'description' => 'Relational Database',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
                 'expertise_level' => 5,
@@ -222,6 +235,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $database->id,
                 'name' => 'MongoDB',
+                'type' => 'database',
                 'description' => 'NoSQL Document Store',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
                 'expertise_level' => 4,
@@ -238,6 +252,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $database->id,
                 'name' => 'AWS',
+                'type' => 'platform',
                 'description' => 'Cloud Infrastructure',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg',
                 'expertise_level' => 3,
@@ -246,6 +261,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $database->id,
                 'name' => 'Docker',
+                'type' => 'tool',
                 'description' => 'Containerization',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg',
                 'expertise_level' => 4,
@@ -377,6 +393,7 @@ class TechStackSeeder extends Seeder
             [
                 'tech_category_id' => $design->id,
                 'name' => 'Figma',
+                'type' => 'tool',
                 'description' => 'UI/UX Design & Prototyping',
                 'logo_url' => 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg',
                 'expertise_level' => 4,
