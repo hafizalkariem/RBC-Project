@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PS Rental Pro - Sewa PlayStation Terpercaya</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        .bg-gradient-custom { background: linear-gradient(135deg, #1e1b4b 0%, #3730a3 50%, #1e40af 100%); }
+        .text-gradient { background: linear-gradient(135deg, #60a5fa, #a78bfa); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .glass-effect { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .hover-scale { transition: transform 0.3s ease; }
+        .hover-scale:hover { transform: scale(1.05); }
+        .nav-blur { backdrop-filter: blur(20px); background: rgba(15, 23, 42, 0.9); }
+    </style>
+</head>
+<body class="bg-slate-900 text-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 nav-blur border-b border-slate-700">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-xl">PS</span>
+                    </div>
+                    <span class="text-xl font-bold text-gradient">PS Rental Pro</span>
+                </div>
+                <div class="hidden md:flex space-x-6">
+                    <a href="#home" class="hover:text-blue-400 transition-colors">Beranda</a>
+                    <a href="#packages" class="hover:text-blue-400 transition-colors">Paket</a>
+                    <a href="#booking" class="hover:text-blue-400 transition-colors">Pemesanan</a>
+                    <a href="#gallery" class="hover:text-blue-400 transition-colors">Galeri</a>
+                    <a href="#contact" class="hover:text-blue-400 transition-colors">Kontak</a>
+                    <button onclick="showAdminLogin()" class="bg-gradient-to-r from-blue-600 to-purple-600 px-4 py-2 rounded-lg hover:opacity-90 transition-opacity">Admin</button>
+                </div>
+                <button class="md:hidden" onclick="toggleMenu()">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    
+    <section id="home" class="min-h-screen flex items-center bg-gradient-custom relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <div class="absolute top-20 left-10 w-72 h-72 bg-blue-500 rounded-full filter blur-3xl animate-pulse"></div>
+            <div class="absolute bottom-20 right-10 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse delay-1000"></div>
+        </div>
+        <div class="container mx-auto px-4 py-20 relative z-10">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div id="heroContent" class="fade-transition fade-in">
+                    <h1 id="heroTitle" class="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+                        Sewa <span class="text-gradient">PlayStation</span> Terbaik
+                    </h1>
+                    <p id="heroDescription" class="text-xl text-gray-300 mb-8">
+                        Nikmati pengalaman gaming terdepan dengan layanan rental PlayStation profesional. Konsol terbaru, game terlengkap, harga terjangkau.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="scrollToSection('packages')" class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-4 rounded-xl text-lg font-semibold hover-scale shadow-lg shadow-blue-500/25">
+                            <span id="primaryButton">Lihat Paket</span>
+                        </button>
+                        <button onclick="openWhatsApp()" class="glass-effect px-8 py-4 rounded-xl text-lg font-semibold hover-scale border border-white/20">
+                            Hubungi Kami
+                        </button>
+                    </div>
+                </div>
+                <div id="heroImage" class="relative fade-transition fade-in">
+                    <div class="relative z-10">
+                        <img id="mainImage" src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?w=600&h=400&fit=crop" alt="PlayStation 5" class="rounded-2xl shadow-2xl hover-scale">
+                    </div>
+                    <div class="absolute -top-4 -right-4 w-full h-full bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-20 blur-xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Packages Section -->
+    <section id="packages" class="py-20 bg-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">Paket Rental</h2>
+                <p class="text-xl text-gray-400">Pilih paket yang sesuai dengan kebutuhan gaming Anda</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Paket Harian -->
+                <div class="glass-effect rounded-2xl p-8 hover-scale" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-blue-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl">🎮</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Paket Harian</h3>
+                        <div class="text-3xl font-bold text-green-400 mb-2">Rp 50.000</div>
+                        <p class="text-gray-400">per hari</p>
+                    </div>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center">
+                            <span class="text-green-400 mr-3">✓</span>
+                            <span>PlayStation 5 + 2 Controller</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-green-400 mr-3">✓</span>
+                            <span>5 Game Pilihan</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-green-400 mr-3">✓</span>
+                            <span>24 Jam Rental</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-green-400 mr-3">✓</span>
+                            <span>Antar Jemput</span>
+                        </div>
+                    </div>
+                    <button onclick="orderPackage('Harian', 50000)" class="w-full bg-gradient-to-r from-green-500 to-blue-500 py-3 rounded-xl font-semibold hover-scale">
+                        Pesan Sekarang
+                    </button>
+                </div>
+
+                <!-- Paket Mingguan -->
+                <div class="glass-effect rounded-2xl p-8 hover-scale border-2 border-blue-500 relative" data-aos="fade-up" data-aos-delay="200">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-blue-500 text-white px-6 py-2 rounded-full text-sm font-semibold">
+                        POPULER
+                    </div>
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl">🏆</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Paket Mingguan</h3>
+                        <div class="text-3xl font-bold text-blue-400 mb-2">Rp 300.000</div>
+                        <p class="text-gray-400">per minggu</p>
+                    </div>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center">
+                            <span class="text-blue-400 mr-3">✓</span>
+                            <span>PlayStation 5 + 4 Controller</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-blue-400 mr-3">✓</span>
+                            <span>10 Game Premium</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-blue-400 mr-3">✓</span>
+                            <span>7 Hari Rental</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-blue-400 mr-3">✓</span>
+                            <span>Free Setup & Support</span>
+                        </div>
+                    </div>
+                    <button onclick="orderPackage('Mingguan', 300000)" class="w-full bg-gradient-to-r from-blue-500 to-purple-500 py-3 rounded-xl font-semibold hover-scale">
+                        Pesan Sekarang
+                    </button>
+                </div>
+
+                <!-- Paket Bulanan -->
+                <div class="glass-effect rounded-2xl p-8 hover-scale" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mx-auto mb-4 flex items-center justify-center">
+                            <span class="text-2xl">👑</span>
+                        </div>
+                        <h3 class="text-2xl font-bold mb-2">Paket Bulanan</h3>
+                        <div class="text-3xl font-bold text-purple-400 mb-2">Rp 1.000.000</div>
+                        <p class="text-gray-400">per bulan</p>
+                    </div>
+                    <div class="space-y-3 mb-8">
+                        <div class="flex items-center">
+                            <span class="text-purple-400 mr-3">✓</span>
+                            <span>PlayStation 5 + 4 Controller</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-purple-400 mr-3">✓</span>
+                            <span>Unlimited Games</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-purple-400 mr-3">✓</span>
+                            <span>30 Hari Rental</span>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-purple-400 mr-3">✓</span>
+                            <span>VIP Support 24/7</span>
+                        </div>
+                    </div>
+                    <button onclick="orderPackage('Bulanan', 1000000)" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 py-3 rounded-xl font-semibold hover-scale">
+                        Pesan Sekarang
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Section -->
+    <section id="booking" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">Pemesanan Online</h2>
+                <p class="text-xl text-gray-400">Pesan PlayStation dengan mudah dan cepat</p>
+            </div>
+            <div class="max-w-2xl mx-auto glass-effect rounded-2xl p-8" data-aos="fade-up">
+                <form id="bookingForm" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Nama Lengkap</label>
+                            <input type="text" name="name" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Nomor WhatsApp</label>
+                            <input type="tel" name="phone" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Alamat Lengkap</label>
+                        <textarea name="address" required rows="3" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none"></textarea>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Paket Rental</label>
+                            <select name="package" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none">
+                                <option value="">Pilih Paket</option>
+                                <option value="Harian">Paket Harian - Rp 50.000</option>
+                                <option value="Mingguan">Paket Mingguan - Rp 300.000</option>
+                                <option value="Bulanan">Paket Bulanan - Rp 1.000.000</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2">Tanggal Sewa</label>
+                            <input type="date" name="date" required class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2">Metode Pembayaran</label>
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="radio" name="payment" value="transfer" required class="text-blue-500 focus:ring-blue-500">
+                                <span>Transfer Bank</span>
+                            </label>
+                            <label class="flex items-center space-x-3 cursor-pointer">
+                                <input type="radio" name="payment" value="cod" required class="text-blue-500 focus:ring-blue-500">
+                                <span>Cash on Delivery (COD)</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 py-4 rounded-xl text-lg font-semibold hover-scale">
+                        Kirim Pesanan
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-slate-800">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">Galeri & Testimoni</h2>
+                <p class="text-xl text-gray-400">Lihat keseruan pelanggan kami</p>
+            </div>
+            
+            <!-- Gallery Grid -->
+            <div class="grid md:grid-cols-4 gap-6 mb-16">
+                <div class="rounded-xl overflow-hidden hover-scale" data-aos="fade-up" data-aos-delay="100">
+                    <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?w=300&h=300&fit=crop" alt="Gaming Setup" class="w-full h-48 object-cover">
+                </div>
+                <div class="rounded-xl overflow-hidden hover-scale" data-aos="fade-up" data-aos-delay="200">
+                    <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=300&h=300&fit=crop" alt="PlayStation Controller" class="w-full h-48 object-cover">
+                </div>
+                <div class="rounded-xl overflow-hidden hover-scale" data-aos="fade-up" data-aos-delay="300">
+                    <img src="https://images.unsplash.com/photo-1493711662062-fa541adb3fc8?w=300&h=300&fit=crop" alt="Gaming Session" class="w-full h-48 object-cover">
+                </div>
+                <div class="rounded-xl overflow-hidden hover-scale" data-aos="fade-up" data-aos-delay="400">
+                    <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?w=300&h=300&fit=crop" alt="Gaming Room" class="w-full h-48 object-cover">
+                </div>
+            </div>
+
+            <!-- Testimonials -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="glass-effect rounded-2xl p-6" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">A</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Ahmad Rizki</h4>
+                            <div class="text-yellow-400">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"Pelayanan sangat memuaskan! PlayStation-nya bersih dan game-gamenya lengkap. Pasti bakal sewa lagi!"</p>
+                </div>
+                <div class="glass-effect rounded-2xl p-6" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">S</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Sari Indah</h4>
+                            <div class="text-yellow-400">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"Anakku senang banget! Proses pemesanan mudah dan pengantarannya tepat waktu. Recommended!"</p>
+                </div>
+                <div class="glass-effect rounded-2xl p-6" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white font-bold">D</span>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold">Deni Kurniawan</h4>
+                            <div class="text-yellow-400">★★★★★</div>
+                        </div>
+                    </div>
+                    <p class="text-gray-300">"Harga terjangkau dengan kualitas premium. Tim supportnya juga responsif banget. Top!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-slate-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-bold mb-6 text-gradient">Kontak & Lokasi</h2>
+                <p class="text-xl text-gray-400">Hubungi kami untuk informasi lebih lanjut</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div data-aos="fade-right">
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center">
+                                <span class="text-xl">📍</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Alamat</h3>
+                                <p class="text-gray-400">Jl. Gaming Center No. 123<br>Cikarang, Bekasi, Jawa Barat</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-blue-500 rounded-full flex items-center justify-center">
+                                <span class="text-xl">📱</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">WhatsApp</h3>
+                                <p class="text-gray-400">+62 822-2622-1535</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-red-500 rounded-full flex items-center justify-center">
+                                <span class="text-xl">📷</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Instagram</h3>
+                                <p class="text-gray-400">@psrentalpro</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full flex items-center justify-center">
+                                <span class="text-xl">🕒</span>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2">Jam Operasional</h3>
+                                <p class="text-gray-400">Senin - Minggu<br>08:00 - 22:00 WIB</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-aos="fade-left">
+                    <div class="glass-effect rounded-2xl p-8">
+                        <h3 class="text-2xl font-bold mb-6">Kirim Pesan</h3>
+                        <form class="space-y-6">
+                            <input type="text" placeholder="Nama Anda" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none">
+                            <input type="email" placeholder="Email Anda" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none">
+                            <textarea placeholder="Pesan Anda" rows="4" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none"></textarea>
+                            <button type="submit" class="w-full bg-gradient-to-r from-blue-600 to-purple-600 py-3 rounded-xl font-semibold hover-scale">
+                                Kirim Pesan
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 relative overflow-hidden">
+        <!-- Decorative background elements -->
+        <div class="absolute inset-0 opacity-5">
+            <div class="absolute top-0 left-0 w-32 h-32 bg-blue-500 rounded-full blur-3xl"></div>
+            <div class="absolute top-10 right-10 w-24 h-24 bg-purple-500 rounded-full blur-2xl"></div>
+            <div class="absolute bottom-0 left-1/2 w-40 h-40 bg-indigo-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <!-- Main footer content -->
+            <div class="py-16">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                    
+                    <!-- Brand Section -->
+                    <div class="lg:col-span-1 space-y-6">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl flex items-center justify-center hover-glow">
+                                <span class="text-white font-bold text-xl">PS</span>
+                            </div>
+                            <div>
+                                <span class="text-2xl font-bold text-gradient">PS Rental Pro</span>
+                                <p class="text-xs text-gray-500">Gaming Excellence</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-400 leading-relaxed">
+                            Pengalaman gaming terbaik dengan layanan rental PlayStation profesional. 
+                            Nikmati koleksi game terlengkap dengan harga terjangkau.
+                        </p>
+                        
+                        <!-- Social Media -->
+                        <div class="flex space-x-4">
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center social-icon hover:bg-blue-600 transition-colors">
+                                <i class="fab fa-facebook-f text-gray-300 hover:text-white"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center social-icon hover:bg-pink-600 transition-colors">
+                                <i class="fab fa-instagram text-gray-300 hover:text-white"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center social-icon hover:bg-green-600 transition-colors">
+                                <i class="fab fa-whatsapp text-gray-300 hover:text-white"></i>
+                            </a>
+                            <a href="#" class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center social-icon hover:bg-red-600 transition-colors">
+                                <i class="fab fa-youtube text-gray-300 hover:text-white"></i>
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-white flex items-center space-x-2">
+                            <i class="fas fa-link text-blue-400"></i>
+                            <span>Quick Links</span>
+                        </h3>
+                        <ul class="space-y-3">
+                            <li><a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Beranda</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Katalog Game</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Paket Rental</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Cara Pesan</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Promo</a></li>
+                            <li><a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Testimoni</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Services -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-white flex items-center space-x-2">
+                            <i class="fas fa-gamepad text-purple-400"></i>
+                            <span>Layanan</span>
+                        </h3>
+                        <ul class="space-y-3">
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-400 text-sm"></i>
+                                <span class="text-gray-400">Rental PS4 & PS5</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-400 text-sm"></i>
+                                <span class="text-gray-400">Antar Jemput Gratis</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-400 text-sm"></i>
+                                <span class="text-gray-400">Game Terbaru</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-400 text-sm"></i>
+                                <span class="text-gray-400">Support 24/7</span>
+                            </li>
+                            <li class="flex items-center space-x-2">
+                                <i class="fas fa-check text-green-400 text-sm"></i>
+                                <span class="text-gray-400">Garansi Perangkat</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Contact Info -->
+                    <div class="space-y-6">
+                        <h3 class="text-lg font-semibold text-white flex items-center space-x-2">
+                            <i class="fas fa-phone text-green-400"></i>
+                            <span>Hubungi Kami</span>
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="gradient-border">
+                                <div class="gradient-border-content">
+                                    <div class="flex items-center space-x-3">
+                                        <i class="fab fa-whatsapp text-green-400 text-lg wave-animation"></i>
+                                        <div>
+                                            <p class="text-white font-semibold">WhatsApp</p>
+                                            <p class="text-gray-400 text-sm">+62 812-3456-7890</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start space-x-3">
+                                <i class="fas fa-map-marker-alt text-red-400 mt-1"></i>
+                                <div>
+                                    <p class="text-white font-semibold">Alamat</p>
+                                    <p class="text-gray-400 text-sm">Jl. Gaming Street No. 123<br>Cikarang, Bekasi 17530</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-clock text-blue-400"></i>
+                                <div>
+                                    <p class="text-white font-semibold">Jam Operasional</p>
+                                    <p class="text-gray-400 text-sm">09:00 - 22:00 WIB</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center space-x-3">
+                                <i class="fas fa-envelope text-purple-400"></i>
+                                <div>
+                                    <p class="text-white font-semibold">Email</p>
+                                    <p class="text-gray-400 text-sm">info@psrentalpro.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Newsletter Section -->
+            <div class="border-t border-slate-800 py-8">
+                <div class="text-center mb-8">
+                    <h3 class="text-xl font-bold text-white mb-2">🎮 Stay Updated!</h3>
+                    <p class="text-gray-400 mb-6">Dapatkan info promo dan game terbaru langsung ke email Anda</p>
+                    <div class="flex flex-col sm:flex-row max-w-md mx-auto gap-3">
+                        <input type="email" placeholder="Masukkan email Anda" 
+                               class="flex-1 px-4 py-3 bg-slate-800 text-white rounded-lg border border-slate-700 focus:border-blue-500 focus:outline-none transition-colors">
+                        <button class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold rounded-lg hover-glow transition-all">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Footer -->
+            <div class="border-t border-slate-800 py-6">
+                <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                    <div class="flex flex-wrap justify-center md:justify-start space-x-6 text-sm">
+                        <a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Terms of Service</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 footer-link">FAQ</a>
+                        <a href="#" class="text-gray-400 hover:text-blue-400 footer-link">Sitemap</a>
+                    </div>
+                    <div class="text-center md:text-right">
+                        <p class="text-gray-500 text-sm">
+                            &copy; 2025 <span class="text-gradient font-semibold">PS Rental Pro</span>. All rights reserved.
+                        </p>
+                        <p class="text-gray-600 text-xs mt-1">Made with ❤️ for Gamers</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Admin Login Modal -->
+    <div id="adminModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+        <div class="glass-effect rounded-2xl p-8 m-4 w-full max-w-md">
+            <h3 class="text-2xl font-bold mb-6 text-center text-gradient">Admin Login</h3>
+            <form id="adminForm" class="space-y-6">
+                <input type="text" id="adminUsername" placeholder="Username" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none">
+                <input type="password" id="adminPassword" placeholder="Password" class="w-full bg-slate-800 border border-slate-600 rounded-lg px-4 py-3 focus:border-blue-500 focus:outline-none">
+                <div class="flex space-x-4">
+                    <button type="submit" class="flex-1 bg-gradient-to-r from-blue-600 to-purple-600 py-3 rounded-xl font-semibold hover-scale">
+                        Login
+                    </button>
+                    <button type="button" onclick="hideAdminLogin()" class="flex-1 bg-slate-700 py-3 rounded-xl font-semibold hover-scale">
+                        Batal
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="adminDashboard" class="fixed inset-0 bg-slate-900 hidden z-50 overflow-y-auto">
+        <div class="container mx-auto px-4 py-8">
+            <div class="flex justify-between items-center mb-8">
+                <h2 class="text-3xl font-bold text-gradient">Admin Dashboard</h2>
+                <button onclick="logout()" class="bg-red-600 px-6 py-2 rounded-lg hover:bg-red-700 transition-colors">
+                    Logout
+                </button>
+            </div>
+            
+            <!-- Dashboard Stats -->
+            <div class="grid md:grid-cols-4 gap-6 mb-8">
+                <div class="glass-effect rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-2">Total Pesanan</h3>
+                    <div class="text-3xl font-bold text-blue-400" id="totalOrders">0</div>
+                </div>
+                <div class="glass-effect rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-2">Pesanan Hari Ini</h3>
+                    <div class="text-3xl font-bold text-green-400" id="todayOrders">0</div>
+                </div>
+                <div class="glass-effect rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-2">Pendapatan Bulan Ini</h3>
+                    <div class="text-3xl font-bold text-purple-400" id="monthlyRevenue">Rp 0</div>
+                </div>
+                <div class="glass-effect rounded-xl p-6">
+                    <h3 class="text-lg font-semibold mb-2">PlayStation Tersedia</h3>
+                    <div class="text-3xl font-bold text-yellow-400" id="availablePS">5</div>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex space-x-4 mb-8">
+                <button onclick="showTab('orders')" id="ordersTab" class="px-6 py-3 bg-blue-600 rounded-lg font-semibold">
+                    Pesanan
+                </button>
+                <button onclick="showTab('packages')" id="packagesTab" class="px-6 py-3 bg-slate-700 rounded-lg font-semibold">
+                    Kelola Paket
+                </button>
+                <button onclick="showTab('customers')" id="customersTab" class="px-6 py-3 bg-slate-700 rounded-lg font-semibold">
+                    Pelanggan
+                </button>
+            </div>
+
+            <!-- Orders Tab -->
+            <div id="ordersContent" class="tab-content">
+                <div class="glass-effect rounded-xl p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold">Data Pesanan</h3>
+                        <button onclick="exportOrders()" class="bg-green-600 px-4 py-2 rounded-lg hover:bg-green-700 transition-colors">
+                            Export Excel
+                        </button>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="border-b border-slate-600">
+                                    <th class="py-3 px-4">ID</th>
+                                    <th class="py-3 px-4">Nama</th>
+                                    <th class="py-3 px-4">Paket</th>
+                                    <th class="py-3 px-4">Tanggal</th>
+                                    <th class="py-3 px-4">Status</th>
+                                    <th class="py-3 px-4">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ordersTable">
+                                <!-- Dynamic content will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Packages Tab -->
+            <div id="packagesContent" class="tab-content hidden">
+                <div class="glass-effect rounded-xl p-6">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold">Kelola Paket Rental</h3>
+                        <button onclick="addPackage()" class="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-700 transition-colors">
+                            Tambah Paket
+                        </button>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6" id="packagesGrid">
+                        <!-- Dynamic package cards will be added here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Customers Tab -->
+            <div id="customersContent" class="tab-content">
+                <div class="glass-effect rounded-2xl p-8 shadow-2xl border border-slate-700/50">
+                    <div class="flex items-center justify-between mb-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="bg-gradient-to-r from-purple-500 to-blue-500 p-3 rounded-xl">
+                                <i class="fas fa-users text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold gradient-text">Data Pelanggan</h3>
+                                <p class="text-slate-400 text-sm">Kelola data pelanggan Anda</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-2 bg-slate-800/50 rounded-lg px-4 py-2">
+                            <i class="fas fa-database text-blue-400"></i>
+                            <span class="text-sm text-slate-300">Total: <span id="totalCustomers" class="font-bold text-white">0</span></span>
+                        </div>
+                    </div>
+                    
+                    <div class="overflow-x-auto rounded-xl bg-slate-800/30 border border-slate-700/50">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-gradient-to-r from-slate-800/80 to-slate-700/80 border-b border-slate-600/50">
+                                    <th class="py-4 px-6 font-semibold text-slate-200">
+                                        <div class="flex items-center space-x-2">
+                                            <i class="fas fa-user text-purple-400 text-sm"></i>
+                                            <span>Nama</span>
+                                        </div>
+                                    </th>
+                                    <th class="py-4 px-6 font-semibold text-slate-200">
+                                        <div class="flex items-center space-x-2">
+                                            <i class="fab fa-whatsapp text-green-400 text-sm"></i>
+                                            <span>WhatsApp</span>
+                                        </div>
+                                    </th>
+                                    <th class="py-4 px-6 font-semibold text-slate-200">
+                                        <div class="flex items-center space-x-2">
+                                            <i class="fas fa-shopping-cart text-orange-400 text-sm"></i>
+                                            <span>Total Pesanan</span>
+                                        </div>
+                                    </th>
+                                    <th class="py-4 px-6 font-semibold text-slate-200">
+                                        <div class="flex items-center space-x-2">
+                                            <i class="fas fa-calendar text-blue-400 text-sm"></i>
+                                            <span>Terakhir Sewa</span>
+                                        </div>
+                                    </th>
+                                    <th class="py-4 px-6 font-semibold text-slate-200">
+                                        <div class="flex items-center space-x-2">
+                                            <i class="fas fa-star text-yellow-400 text-sm"></i>
+                                            <span>Status</span>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTable">
+                                <!-- Dynamic content will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Custom Alert Modal (Hidden by default) -->
+<div id="customAlert" class="fixed inset-0 alert-overlay z-50 flex items-center justify-center hidden">
+    <div class="bg-white text-gray-800 rounded-2xl shadow-2xl max-w-md w-full mx-4 overflow-hidden">
+        <!-- Success Icon -->
+        <div class="bg-green-500 p-4 text-center">
+            <div class="success-icon inline-flex items-center justify-center w-16 h-16 bg-white rounded-full">
+                <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path>
+                </svg>
+            </div>
+        </div>
+        
+        <!-- Alert Content -->
+        <div class="p-6 text-center">
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Pesanan Berhasil Dikirim!</h3>
+            <p class="text-gray-600 mb-6">Anda akan diarahkan ke WhatsApp untuk konfirmasi lebih lanjut.</p>
+            
+            <!-- Action Button -->
+            <button onclick="closeCustomAlert()" class="bg-green-500 hover:bg-green-600 text-white px-8 py-3 rounded-xl font-semibold transition-colors w-full">
+                OK, Mengerti
+            </button>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+
+   
+</body>
+</html>

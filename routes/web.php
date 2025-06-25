@@ -16,6 +16,7 @@ Route::get('/', [PageController::class, 'home'])->name('home');
 // Toko Page
 Route::get('/toko', [TokoController::class, 'index'])->name('toko');
 Route::get('/toko/search', [TokoController::class, 'search'])->name('toko.search');
+Route::get('/toko/product/{product}', [TokoController::class, 'show'])->name('toko.product.show');
 
 // Cart routes
 Route::middleware('auth')->group(function () {

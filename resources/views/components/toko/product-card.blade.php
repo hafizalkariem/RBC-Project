@@ -1,4 +1,5 @@
-<div class="product-card glass-card rounded-3xl p-6 shadow-2xl text-white group hover:shadow-blue-500/20 animate-fade-in" style="animation-delay: {{ $index * 0.1 }}s">
+<a href="{{ route('toko.product.show', $product) }}" class="block">
+<div class="product-card glass-card rounded-3xl p-6 shadow-2xl text-white group hover:shadow-blue-500/20 animate-fade-in cursor-pointer" style="animation-delay: {{ $index * 0.1 }}s">
     <div class="relative mb-6 overflow-hidden rounded-2xl bg-gray-800 product-image">
         <img src="{{ $product->image_url }}"
             alt="{{ $product->name }}"
@@ -67,3 +68,4 @@ onerror="this.src='data:image/svg+xml;base64,{{ base64_encode('<svg xmlns="http:
         </div>
     </div>
 </div>
+</a>

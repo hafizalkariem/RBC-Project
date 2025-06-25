@@ -20,6 +20,7 @@ class Product extends Model
         'developer_id',
         'status',
         'source_code_path',
+        'preview_url',
     ];
 
     public function category()

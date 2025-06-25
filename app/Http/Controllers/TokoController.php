@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\Technology;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class TokoController extends Controller
 {
@@ -69,5 +70,11 @@ class TokoController extends Controller
                 'html' => '<div class="col-span-full text-center py-12"><div class="glass-card rounded-3xl p-8 text-white"><h3 class="text-xl font-bold mb-2">Error</h3><p class="text-white/70">Terjadi kesalahan saat mencari produk</p></div></div>'
             ]);
         }
+    }
+
+    public function show(Product $product)
+    {
+        $product->load(['category', 'technologies', 'developer']);
+        return view('pages.toko.show', compact('product'));
     }
 }

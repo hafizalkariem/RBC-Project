@@ -154,6 +154,18 @@
                     </div>
                 </div>
 
+                <!-- Preview URL -->
+                <div class="space-y-2">
+                    <label class="block text-sm font-medium text-gray-300">
+                        <i class="fas fa-external-link-alt mr-2 text-blue-400"></i>
+                        Preview URL
+                    </label>
+                    <input type="url" name="preview_url" id="editPreviewUrl"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                        placeholder="https://example.github.io/project atau https://demo.example.com">
+                    <p class="text-xs text-gray-500">Link untuk live preview (GitHub Pages, Netlify, Vercel, dll)</p>
+                </div>
+
                 <!-- Modal Footer -->
                 <div class="flex items-center justify-end space-x-4 pt-6 border-t border-blue-500/20">
                     <button type="button" onclick="closeEditProductModal()"

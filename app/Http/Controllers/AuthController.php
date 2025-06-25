@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
+use App\Models\Role;
 
 class AuthController extends Controller
 {
@@ -57,9 +58,13 @@ class AuthController extends Controller
             'client_role' => $request->client_role,
         ]);
 
-        Auth::login($user);
+        // Assign default 'user' role
+        $userRole = Role::where('name', 'user')->first();
+        if ($userRole) {
+            $user->roles()->attach($userRole->id);
+        }
 
-        return redirect()->route('home')->with('success', 'Registration successful! Welcome to RBC.');
+        return redirect()->route('login')->with('success', 'Registration successful! Please login to continue.');
     }
 
     public function logout()

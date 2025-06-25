@@ -89,6 +89,7 @@ class ProductController extends Controller
                 'status' => 'nullable|in:hot,premium,best,new',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'source_code' => 'required|file|mimes:zip,rar|max:51200',
+                'preview_url' => 'nullable|url',
                 'technologies' => 'array',
                 'technologies.*' => 'exists:technologies,id'
             ]);
@@ -100,6 +101,7 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->developer_id = $request->developer_id;
             $product->status = $request->status;
+            $product->preview_url = $request->preview_url;
 
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('products', 'public');
@@ -169,6 +171,7 @@ class ProductController extends Controller
                 'status' => 'nullable|in:hot,premium,best,new',
                 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'source_code' => 'nullable|file|mimes:zip,rar|max:51200',
+                'preview_url' => 'nullable|url',
                 'technologies' => 'array',
                 'technologies.*' => 'exists:technologies,id'
             ]);
@@ -179,6 +182,7 @@ class ProductController extends Controller
             $product->category_id = $request->category_id;
             $product->developer_id = $request->developer_id;
             $product->status = $request->status;
+            $product->preview_url = $request->preview_url;
 
             if ($request->hasFile('image')) {
                 if ($product->image_url && !filter_var($product->image_url, FILTER_VALIDATE_URL)) {
