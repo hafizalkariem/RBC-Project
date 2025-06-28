@@ -77,4 +77,10 @@ class TokoController extends Controller
         $product->load(['category', 'technologies', 'developer']);
         return view('pages.toko.show', compact('product'));
     }
+    
+    public function incrementViews(Product $product)
+    {
+        $product->increment('views');
+        return response()->json(['success' => true, 'views' => $product->views]);
+    }
 }

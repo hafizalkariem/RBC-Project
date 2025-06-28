@@ -447,6 +447,17 @@
                 document.getElementById('editProductName').value = product.name;
                 document.getElementById('editProductDescription').value = product.description;
                 document.getElementById('editProductPrice').value = product.price;
+                document.getElementById('editPreviewUrl').value = product.preview_url || '';
+                
+                // Show current image
+                document.getElementById('editPreviewImg').src = product.image_url;
+                
+                // Show current source code info if exists
+                if (product.source_code_path) {
+                    document.getElementById('currentSourceCodeName').textContent = product.source_code_path.split('/').pop();
+                } else {
+                    document.getElementById('currentSourceCodeName').textContent = 'Tidak ada file';
+                }
 
                 // Fill categories
                 const categorySelect = document.getElementById('editProductCategory');
@@ -542,7 +553,6 @@
             const reader = new FileReader();
             reader.onload = function(e) {
                 document.getElementById('editPreviewImg').src = e.target.result;
-                document.getElementById('editImagePreview').classList.remove('hidden');
             };
             reader.readAsDataURL(file);
         }
@@ -552,8 +562,7 @@
     document.getElementById('editSourceCode').addEventListener('change', function(e) {
         const file = e.target.files[0];
         if (file) {
-            document.getElementById('editSourceCodeName').textContent = file.name;
-            document.getElementById('editSourceCodeInfo').classList.remove('hidden');
+            document.getElementById('currentSourceCodeName').textContent = file.name + ' (file baru)';
         }
     });
 

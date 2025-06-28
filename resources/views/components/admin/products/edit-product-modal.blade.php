@@ -121,7 +121,8 @@
                                 <p class="text-xs text-gray-500">PNG, JPG, GIF hingga 2MB</p>
                             </div>
                         </label>
-                        <div id="editImagePreview" class="hidden mt-4">
+                        <div id="editImagePreview" class="mt-4">
+                            <p class="text-sm text-gray-400 mb-2">Gambar saat ini:</p>
                             <img id="editPreviewImg" class="w-full h-48 object-cover rounded-lg border border-gray-700">
                         </div>
                     </div>
@@ -142,14 +143,11 @@
                                 <p class="mt-2 text-sm text-gray-400 group-hover:text-blue-400 transition-colors duration-300">
                                     Klik untuk upload source code baru
                                 </p>
-                                <p class="text-xs text-gray-500">ZIP, RAR hingga 50MB</p>
+                                <p class="text-xs text-gray-500">.ZIP, .RAR hingga 10MB</p>
                             </div>
                         </label>
-                        <div id="editSourceCodeInfo" class="hidden mt-4 p-3 bg-gray-700 rounded-lg border border-gray-600">
-                            <div class="flex items-center text-green-400">
-                                <i class="fas fa-check-circle mr-2"></i>
-                                <span id="editSourceCodeName" class="text-sm"></span>
-                            </div>
+                        <div id="editSourceCodeInfo" class="mt-4">
+                            <p class="text-sm text-gray-400 mb-2">Source code saat ini: <span id="currentSourceCodeName" class="text-blue-400"></span></p>
                         </div>
                     </div>
                 </div>
@@ -161,7 +159,7 @@
                         Preview URL
                     </label>
                     <input type="url" name="preview_url" id="editPreviewUrl"
-                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition-all duration-300"
+                        class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-white placeholder-gray-400 transition-all duration-300 break-all"
                         placeholder="https://example.github.io/project atau https://demo.example.com">
                     <p class="text-xs text-gray-500">Link untuk live preview (GitHub Pages, Netlify, Vercel, dll)</p>
                 </div>

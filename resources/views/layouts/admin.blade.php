@@ -123,13 +123,13 @@
                             <i class="fas fa-chevron-down transition-transform icon-glow" :class="openMenus.transactions ? 'rotate-180' : ''"></i>
                         </button>
                         <div x-show="openMenus.transactions" x-transition class="ml-6 mt-2 space-y-1">
-                            <a href="#" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
-                                <i class="fas fa-list mr-2 text-red-400"></i>Semua Order
+                            <a href="{{ route('admin.transactions.index') }}" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
+                                <i class="fas fa-list mr-2 text-red-400"></i>Semua Transaksi
                             </a>
-                            <a href="#" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
+                            <a href="{{ route('admin.transactions.index', ['status' => 'pending']) }}" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
                                 <i class="fas fa-clock mr-2 text-red-400"></i>Pending
                             </a>
-                            <a href="#" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
+                            <a href="{{ route('admin.transactions.index', ['status' => 'completed']) }}" class="submenu-item-hover block px-4 py-2 text-gray-400 hover:text-white rounded transition-all duration-300">
                                 <i class="fas fa-check mr-2 text-red-400"></i>Completed
                             </a>
                         </div>

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'products';
     protected $fillable = [
@@ -21,6 +23,7 @@ class Product extends Model
         'status',
         'source_code_path',
         'preview_url',
+        'views',
     ];
 
     public function category()
@@ -74,7 +77,7 @@ class Product extends Model
 
     public function hasSourceCode()
     {
-        return !empty($this->source_code_path) && \Storage::disk('public')->exists($this->source_code_path);
+        return !empty($this->source_code_path) && Storage::disk('public')->exists($this->source_code_path);
     }
 
     public function getSourceCodeSizeAttribute()
@@ -83,7 +86,7 @@ class Product extends Model
             return null;
         }
         
-        $bytes = \Storage::disk('public')->size($this->source_code_path);
+        $bytes = Storage::disk('public')->size($this->source_code_path);
         return $this->formatBytes($bytes);
     }
 

@@ -17,14 +17,20 @@ class CartController extends Controller
             return response()->json(['error' => 'Please login first'], 401);
         }
 
-        // Get or create pending order for user
-        $order = Order::firstOrCreate([
-            'user_id' => Auth::id(),
-            'status' => 'pending'
-        ], [
-            'total_amount' => 0,
-            'payment_method' => null
-        ]);
+        // Get or create pending order for user (only orders without payment_id)
+        $order = Order::where('user_id', Auth::id())
+                     ->where('status', 'pending')
+                     ->whereNull('payment_id')
+                     ->first();
+                     
+        if (!$order) {
+            $order = Order::create([
+                'user_id' => Auth::id(),
+                'status' => 'pending',
+                'total_amount' => 0,
+                'payment_method' => null
+            ]);
+        }
 
         // Check if product already in cart
         $orderItem = OrderItem::where('order_id', $order->id)
@@ -60,6 +66,7 @@ class CartController extends Controller
 
         $order = Order::where('user_id', Auth::id())
                      ->where('status', 'pending')
+                     ->whereNull('payment_id')
                      ->first();
 
         $count = $order ? $order->orderItems()->sum('quantity') : 0;
@@ -76,8 +83,28 @@ class CartController extends Controller
         $order = Order::with(['orderItems.product'])
                      ->where('user_id', Auth::id())
                      ->where('status', 'pending')
+                     ->whereNull('payment_id')
                      ->first();
 
         return view('cart.index', compact('order'));
+    }
+
+    public function removeFromCart(OrderItem $orderItem)
+    {
+        if (!Auth::check() || $orderItem->order->user_id !== Auth::id()) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $order = $orderItem->order;
+        $orderItem->delete();
+
+        // Update total amount
+        $order->total_amount = $order->orderItems()->sum(DB::raw('price * quantity'));
+        $order->save();
+
+        return response()->json([
+            'success' => true,
+            'cart_count' => $order->orderItems()->sum('quantity')
+        ]);
     }
 }
